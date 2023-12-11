@@ -1,20 +1,19 @@
 'use server'
-import { PrismaClient } from '@prisma/client';
 import { z } from 'zod'
 import { hash } from 'bcrypt'
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { prisma } from './prisma';
 
 
-const prisma = new PrismaClient()
+const requiredString = z.string().refine(data => data.trim().length > 0, {
+  message: 'This field is required.',
+});
 
 const FormSchema = z.object({
-  name: z.string({
-      invalid_type_error: 'Name is required.',
-      required_error: "Name is required",
-  }),
+  name: z.string().min(4, {message:'Name must have more than 4 character'}),
   email: z.string().email({ message: "Invalid email address" }),
-  password: z.string({invalid_type_error: 'Password is required', required_error: "Password is required", }),
+  password: z.string().min(6, {message: 'Password must have more than 6 characters'}),
 });
 
 export type State = {
@@ -23,10 +22,15 @@ export type State = {
         email?: string[];
         password?: string[];
     };
-    message?: string | null
+    message?: null | string;
+    fieldValues?: {
+        name?: string,
+        email?: string,
+        password?: string
+    }
 }
 
-export async function register(prevState: State, formData: FormData) {
+export async function register(prevState: State, formData: FormData): Promise<State> {
     const validatedFields = FormSchema.safeParse({
         name: formData.get('name'),
         email: formData.get('email'),
@@ -36,7 +40,12 @@ export async function register(prevState: State, formData: FormData) {
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Fields to register'
+            message: 'Missing Fields. Fields to register',
+            fieldValues: {
+                name: '',
+                email: '',
+                password: '',
+            }
         }
     }
 
@@ -44,10 +53,18 @@ export async function register(prevState: State, formData: FormData) {
     const hashedPassword = await hash(password, 10)
     
     try {
+        const user = await prisma.user.findUnique({ where: { email } })
+        if (user) {
+            return {message: 'Email already exists'}
+        }
         await prisma.user.create({ data: { name, email, password: hashedPassword } })
+        return {message: 'User created'}
     } catch (error) {
-        return { message: 'Database Error: Failed to create user.' }
+        return {
+            message: 'Data Base error', fieldValues: {
+                name,
+                email,
+                password
+        } }
     }
-
-
 }
