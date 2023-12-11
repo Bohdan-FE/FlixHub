@@ -1,0 +1,10 @@
+.inputWrapper {
+    @apply relative
+}
+.input {
+    @apply bg-neutral-700 p-2 w-full; 
+}
+
+.label {
+    @apply absolute top-1/2 
+}

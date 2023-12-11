@@ -1,11 +1,11 @@
-import RegisterForm from "../UI/components/RegisterForm";
+import RegisterForm from "../UI/components/RegisterForm/RegisterForm";
 
 async function Page() {
     return (
         <div>
-            <RegisterForm/>
+            <RegisterForm />
         </div>
-        );
+    );
 }
 
 export default Page;
