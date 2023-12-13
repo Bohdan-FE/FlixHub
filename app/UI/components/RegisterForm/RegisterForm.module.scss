@@ -2,9 +2,9 @@
     @apply relative
 }
 .input {
-    @apply bg-neutral-700 p-2 w-full; 
+    @apply bg-neutral-700 p-2 w-full border-solid border-[1px] border-neutral-500 focus:placeholder:text-transparent pl-2  
 }
 
-.label {
-    @apply absolute top-1/2 
+.errorInput {
+    @apply italic text-red-300 text-sm
 }

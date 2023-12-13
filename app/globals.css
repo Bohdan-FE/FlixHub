@@ -17,7 +17,7 @@
 }
 
 body {
-  @apply bg-neutral-800
+  @apply bg-neutral-900 text-neutral-300
 }
 
 input:-webkit-autofill,
@@ -29,10 +29,10 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 1px solid #253341;
+  border: 1px solid rgb(64 64 64);
   -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #253341 inset;
-  box-shadow: 0 0 0px 1000px #28374c inset;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(64 64 64) inset;
+  box-shadow: 0 0 0px 1000px rgb(64 64 64) inset;
   transition: background-color 5000s ease-in-out 0s;
   color: white;
 }

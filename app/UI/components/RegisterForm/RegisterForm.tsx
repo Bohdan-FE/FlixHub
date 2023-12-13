@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import SubmitButton from "../buttons";
 import styles from './RegisterForm.module.scss'
+import clsx from 'clsx'
 
 function RegisterForm() {
     const initialState = {
@@ -24,40 +25,27 @@ function RegisterForm() {
     }, [formState])
 
     return (
-        <form className='flex flex-col p-2 max-w-sm' action={dispatch} ref={formRef}>
-            <h3 className='text-3xl text-center text-neutral-300 mb-2 border-b border-neutral-300 pb-3'>SIGN UP</h3>
-            {formState.message !== '' && <div className="border-solid border-black border-2 p-3 mb-2">{formState.message && <p className="text-center">{formState.message}</p>}</div>}
-            <div className={styles.inputWrapper}>
-                <label className={styles.label} htmlFor='name'>
-                    Name
-                </label>
-                <input className={styles.input} type="text" id='name' name="name" defaultValue={formState.fieldValues?.name} aria-describedby="name-error" />
-            </div>
-            <div className="mb-2" id='name-error' aria-live='polite' aria-atomic='true'>
+        <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch} ref={formRef}>
+            <h3 className='text-3xl text-center text-neutral-300 mb-2 border-b border-neutral-300 pb-3 mb-5'>SIGN UP</h3>
+            {formState.message !== '' && <div className={clsx('border - solid border - neutral - 300 border - 2 p - 3 mb - 2 text - neutral - 300 rounded-xl', {
+                'border-red-300 p-3 mb-3 ': formState.message !== ''
+            })}>{formState.message && <p className="text-center text-red-300">{formState.message}</p>}</div>}
+            <input className={styles.input} type="text" id='name' name="name" defaultValue={formState.fieldValues?.name} aria-describedby="name-error" placeholder="Your Name" />
+            <div className="mb-4" id='name-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.name && formState.errors?.name.map((error: string) => (
-                    <p key={error}>{error}</p>
+                    <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <div>
-                <label className="block" htmlFor='email' >
-                    Email
-                </label>
-                <input className={styles.input} type="email" id='email' name="email" defaultValue={formState.fieldValues?.email} aria-describedby="email-error" />
-            </div>
-            <div className="mb-2" id='email-error' aria-live='polite' aria-atomic='true'>
+            <input className={styles.input} type="email" id='email' name="email" defaultValue={formState.fieldValues?.email} aria-describedby="email-error" placeholder="Email address" />
+            <div className="mb-4" id='email-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.email && formState.errors?.email.map((error: string) => (
-                    <p key={error}>{error}</p>
+                    <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <div>
-                <label className="block" htmlFor='password'>
-                    Password
-                </label>
-                <input className={styles.input} type="password" id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" />
-            </div>
-            <div className="mb-2" id='password-error' aria-live='polite' aria-atomic='true'>
+            <input className={styles.input} type="password" id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" placeholder="Password" />
+            <div className="mb-4" id='password-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.password && formState.errors?.password.map((error: string) => (
-                    <p key={error}>{error}</p>
+                    <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
             <SubmitButton />
