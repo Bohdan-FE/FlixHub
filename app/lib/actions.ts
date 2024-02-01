@@ -1,8 +1,6 @@
 'use server'
 import { z } from 'zod'
 import { hash } from 'bcrypt'
-import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 import { prisma } from './prisma';
 
 
@@ -40,7 +38,7 @@ export async function register(prevState: State, formData: FormData): Promise<St
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Fields to register',
+            message: null,
             fieldValues: {
                 name: '',
                 email: '',
@@ -58,7 +56,7 @@ export async function register(prevState: State, formData: FormData): Promise<St
             return {message: 'Email already exists'}
         }
         await prisma.user.create({ data: { name, email, password: hashedPassword } })
-        return {message: 'User created'}
+        return {message: null}
     } catch (error) {
         return {
             message: 'Data Base error', fieldValues: {

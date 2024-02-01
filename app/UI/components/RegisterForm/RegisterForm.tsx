@@ -26,8 +26,8 @@ function RegisterForm() {
 
     return (
         <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch} ref={formRef}>
-            <h3 className='text-3xl text-center text-neutral-300 mb-2 border-b border-neutral-300 pb-3 mb-5'>SIGN UP</h3>
-            {formState.message !== '' && <div className={clsx('border - solid border - neutral - 300 border - 2 p - 3 mb - 2 text - neutral - 300 rounded-xl', {
+            <h3 className='text-3xl text-center text-neutral-300 border-b border-neutral-300 pb-3 mb-5'>SIGN UP</h3>
+            {formState.message && <div className={clsx('border-solid border-neutral-300 border-2 p-3 mb-2 text-neutral-300 rounded-xl', {
                 'border-red-300 p-3 mb-3 ': formState.message !== ''
             })}>{formState.message && <p className="text-center text-red-300">{formState.message}</p>}</div>}
             <input className={styles.input} type="text" id='name' name="name" defaultValue={formState.fieldValues?.name} aria-describedby="name-error" placeholder="Your Name" />
@@ -36,7 +36,7 @@ function RegisterForm() {
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <input className={styles.input} type="email" id='email' name="email" defaultValue={formState.fieldValues?.email} aria-describedby="email-error" placeholder="Email address" />
+            <input className={styles.input} type="text" id='email' name="email" defaultValue={formState.fieldValues?.email} aria-describedby="email-error" placeholder="Email address" />
             <div className="mb-4" id='email-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.email && formState.errors?.email.map((error: string) => (
                     <p className={styles.errorInput} key={error}>{error}</p>
