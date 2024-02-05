@@ -8,7 +8,8 @@ import { compare } from "bcrypt";
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   pages: { signIn: '/login'},
-  session: {strategy: 'jwt'},
+  session: { strategy: 'jwt' },
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
   CredentialsProvider({
     name: "Credentials",
@@ -41,4 +42,6 @@ export const authOptions: NextAuthOptions = {
   })
 ],
 }
-export default NextAuth(authOptions)
+const handler = NextAuth(authOptions)
+
+export {handler as GET, handler as POST }

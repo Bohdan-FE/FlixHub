@@ -1,11 +1,12 @@
 'use client'
 
 import { register } from "@/app/lib/registerAction";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import SubmitButton from "../buttons";
 import styles from './RegisterForm.module.scss'
 import clsx from 'clsx'
+import { redirect } from "next/navigation";
 
 function RegisterForm() {
     const initialState = {
@@ -15,16 +16,16 @@ function RegisterForm() {
         }
     }
     const [formState, dispatch] = useFormState(register, initialState)
-    const formRef = useRef<HTMLFormElement>(null)
+
 
     useEffect(() => {
         if (formState.message === 'User created') {
-            formRef.current?.reset()
+
         }
     }, [formState])
 
     return (
-        <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch} ref={formRef}>
+        <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch}>
             <h3 className='text-3xl text-center text-neutral-300 border-b border-neutral-300 pb-3 mb-5'>SIGN UP</h3>
             {formState.message && <div className={clsx('border-solid border-neutral-300 border-2 p-3 mb-2 text-neutral-300 rounded-xl', {
                 'border-red-300 p-3 mb-3 ': formState.message !== ''
