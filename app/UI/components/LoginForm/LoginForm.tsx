@@ -5,7 +5,6 @@ import SubmitButton from "../buttons";
 import styles from '../RegisterForm/RegisterForm.module.scss'
 import clsx from 'clsx'
 import { login } from "@/app/lib/loginAction";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 function LoginForm() {
@@ -18,15 +17,8 @@ function LoginForm() {
     }
     const [formState, dispatch] = useFormState(login, initialState)
 
-
-    const onSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        const data = await signIn('credentials', { email: 'email@email.com', password: '123456' })
-        router.push('/')
-    }
-
     return (
-        <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' onSubmit={onSubmit}>
+        <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch}>
             <h3 className='text-3xl text-center text-neutral-300 border-b border-neutral-300 pb-3 mb-5'>SIGN IN</h3>
             {formState.message && <div className={clsx('border-solid border-neutral-300 border-2 p-3 mb-2 text-neutral-300 rounded-xl', {
                 'border-red-300 p-3 mb-3 ': formState.message !== ''

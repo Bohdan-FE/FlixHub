@@ -1,6 +1,4 @@
-'use server'
 import { z } from 'zod'
-import { hash } from 'bcrypt'
 import { signIn } from 'next-auth/react';
 
 const FormSchema = z.object({
@@ -38,11 +36,11 @@ export async function login(prevState: State, formData: FormData): Promise<State
     }
 
     const { email, password } = validatedFields.data
-    const hashedPassword = await hash(password, 10)
-    
     try {
-        console.log(email, password)
-        const signInData = await signIn('credentials', { email, password })
+        const signInData = await signIn('credentials', { email, password, redirect: false })
+        if (signInData?.error) {
+            return {message: 'Email or password incorrect'}
+        }
         console.log(signInData)
         return {message: 'loged in'}
     } catch (error) {
