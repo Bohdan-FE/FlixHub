@@ -5,7 +5,7 @@ import { prisma } from "@/app/lib/prisma";
 import { compare } from "bcrypt";
 
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   pages: { signIn: '/login' },
   secret: process.env.NEXTAUTH_SECRET,
