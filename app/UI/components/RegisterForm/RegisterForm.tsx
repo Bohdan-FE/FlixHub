@@ -1,26 +1,33 @@
 'use client'
 
 import { register } from "@/app/lib/registerAction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import SubmitButton from "../buttons";
 import styles from './RegisterForm.module.scss'
 import clsx from 'clsx'
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
+
 
 function RegisterForm() {
+    const [isVisiblePassword, setIsVisiblePassword] = useState<Boolean>(false)
+    const [isVisibleRepeatPassword, setIsVisibleRepeatPassword] = useState<Boolean>(false)
     const initialState = {
         message: '', errors: undefined, fieldValues: {
+            name: '',
             email: '',
-            password: ''
+            password: '',
+            repeatPassword: ''
         }
     }
     const [formState, dispatch] = useFormState(register, initialState)
-
+    const router = useRouter()
 
     useEffect(() => {
         if (formState.message === 'User created') {
-
+            router.push('/login')
         }
     }, [formState])
 
@@ -42,9 +49,23 @@ function RegisterForm() {
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <input className={styles.input} type="password" id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" placeholder="Password" />
+            <div className="relative">
+                <input className={styles.input} type={isVisiblePassword ? 'text' : 'password'} id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" placeholder="Password" />
+                {isVisiblePassword ? <FiEye className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisiblePassword(false)} /> :
+                    <FiEyeOff className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisiblePassword(true)} />}
+            </div>
             <div className="mb-4" id='password-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.password && formState.errors?.password.map((error: string) => (
+                    <p className={styles.errorInput} key={error}>{error}</p>
+                ))}
+            </div>
+            <div className="relative">
+                <input className={styles.input} type={isVisibleRepeatPassword ? 'text' : 'password'} id='repeat-password' name="repeat-password" defaultValue={formState.fieldValues?.repeatPassword} aria-describedby="repeat-password-error" placeholder="Confirm password" />
+                {isVisibleRepeatPassword ? <FiEye className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisibleRepeatPassword(false)} /> :
+                    <FiEyeOff className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisibleRepeatPassword(true)} />}
+            </div>
+            <div className="mb-4" id='repeat-password-error' aria-live='polite' aria-atomic='true'>
+                {formState.errors?.repeatPassword && formState.errors?.repeatPassword.map((error: string) => (
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>

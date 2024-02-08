@@ -6,8 +6,12 @@ import styles from '../RegisterForm/RegisterForm.module.scss'
 import clsx from 'clsx'
 import { login } from "@/app/lib/loginAction";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 function LoginForm() {
+    const [isVisiblePassword, setIsVisiblePassword] = useState<Boolean>(false)
     const router = useRouter()
     const initialState = {
         message: '', errors: undefined, fieldValues: {
@@ -29,7 +33,11 @@ function LoginForm() {
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <input className={styles.input} type="password" id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" placeholder="Password" />
+            <div className="relative">
+                <input className={styles.input} type={isVisiblePassword ? 'text' : 'password'} id='password' name="password" defaultValue={formState.fieldValues?.password} aria-describedby="password-error" placeholder="Password" />
+                {isVisiblePassword ? <FiEye className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisiblePassword(false)} /> :
+                    <FiEyeOff className="absolute top-[0] right-4 h-[100%] w-5 cursor-pointer" onClick={() => setIsVisiblePassword(true)} />}
+            </div>
             <div className="mb-4" id='password-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.password && formState.errors?.password.map((error: string) => (
                     <p className={styles.errorInput} key={error}>{error}</p>
