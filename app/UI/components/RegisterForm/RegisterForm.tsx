@@ -69,7 +69,7 @@ function RegisterForm() {
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <SubmitButton title='SignUp' />
+            <SubmitButton title='Sign Up' />
         </form>);
 }
 

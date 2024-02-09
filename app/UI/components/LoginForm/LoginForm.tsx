@@ -43,7 +43,7 @@ function LoginForm() {
                     <p className={styles.errorInput} key={error}>{error}</p>
                 ))}
             </div>
-            <SubmitButton title='SignIn' />
+            <SubmitButton title='Sign In' />
         </form>
     )
 }
