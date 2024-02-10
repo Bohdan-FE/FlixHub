@@ -1,0 +1,7 @@
+.activeLink {
+    @apply after:content-[''] after:block after:absolute after:h-1 after:w-full after:bg-neutral-50 text-neutral-50 after:rounded-2xl after:top-[110%]
+}
+
+.link {
+    @apply hover:text-neutral-50 transition-colors
+}
