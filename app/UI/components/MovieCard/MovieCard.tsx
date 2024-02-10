@@ -2,7 +2,8 @@ import Image from "next/image";
 import { FiHeart } from "react-icons/fi";
 import { BsFillStarFill } from "react-icons/bs";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/lib/auth";
+
 
 async function MovieCard({ movie }: { movie: Movie }) {
     const session = await getServerSession(authOptions)

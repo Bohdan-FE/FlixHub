@@ -1,13 +1,9 @@
-import { getServerSession } from "next-auth"
 import MovieCard from "./UI/components/MovieCard/MovieCard"
 import { getMovies } from "./lib/getMovies"
-import { authOptions } from "./api/auth/[...nextauth]/route"
-
 
 export default async function Home() {
   const movies: MoviesData = await getMovies(2)
-  const session = await getServerSession(authOptions)
-  console.log(session)
+
   return (
     <main className="">
       <div className="max-w-7xl mx-auto p-4">
