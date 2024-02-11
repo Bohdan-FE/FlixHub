@@ -1,5 +1,7 @@
 import { z } from 'zod'
 import { signIn } from 'next-auth/react';
+import { prisma } from './prisma';
+import { compare } from 'bcrypt';
 
 
 const FormSchema = z.object({
@@ -38,11 +40,11 @@ export async function login(prevState: State, formData: FormData): Promise<State
 
     const { email, password } = validatedFields.data
     try {
-        const signInData = await signIn('credentials', { email, password, redirect: true })
+        const signInData = await signIn('credentials', { email, password, redirect: false })
         if (signInData?.error) {
-            return {message: 'Email or password incorrect'}
+            return {message: 'Password or email incorect'}
         }
-        return {message: ''}
+        return {message: 'loged in'}
     } catch (error) {
         return {
             message: 'Data Base error', fieldValues: {

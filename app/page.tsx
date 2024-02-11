@@ -2,7 +2,7 @@ import MovieCard from "./UI/components/MovieCard/MovieCard"
 import { getMovies } from "./lib/getMovies"
 
 export default async function Home() {
-  const movies: MoviesData = await getMovies(2)
+  const movies: MoviesData = await getMovies()
 
   return (
     <main className="">

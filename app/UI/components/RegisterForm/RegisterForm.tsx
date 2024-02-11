@@ -35,9 +35,9 @@ function RegisterForm() {
         <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch}>
             <h3 className='text-3xl text-center text-neutral-300 border-b border-neutral-300 pb-3 mb-5'>SIGN UP</h3>
             {formState.message && <div className={clsx('border-solid border-neutral-300 border-2 p-3 mb-2 text-neutral-300 rounded-xl', {
-                'border-red-300 p-3 mb-3 ': formState.message !== ''
-            })}>{formState.message && <p className="text-center text-red-300">{formState.message}</p>}</div>}
-            <input className={styles.input} type="text" id='name' name="name" defaultValue={formState.fieldValues?.name} aria-describedby="name-error" placeholder="Your Name" />
+                'border-red-300 p-3 mb-3 text-red-300': formState.message !== 'User created'
+            })}>{formState.message && <p className="text-center ">{formState.message}</p>}</div>}
+            <input className={styles.input} autoComplete="on" type="text" id='name' name="name" defaultValue={formState.fieldValues?.name} aria-describedby="name-error" placeholder="Your Name" />
             <div className="mb-4" id='name-error' aria-live='polite' aria-atomic='true'>
                 {formState.errors?.name && formState.errors?.name.map((error: string) => (
                     <p className={styles.errorInput} key={error}>{error}</p>

@@ -58,6 +58,7 @@ export const authOptions: AuthOptions = {
           id: token.id
         }
       }
-    }
+    },
+
   }
 }

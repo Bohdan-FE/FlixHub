@@ -1,12 +1,14 @@
+'use client'
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { BsFillStarFill } from "react-icons/bs";
 
 
 
-async function MovieCard({ movie }: { movie: Movie }) {
-
+function MovieCard({ movie }: { movie: Movie }) {
+    const router = useRouter()
     return (
-        <li id={`${movie.id}`} className="rounded-2xl overflow-hidden shadow-md relative hover:scale-[1.02] transition-transform duration-250 cursor-pointer active:scale-[0.97]">
+        <li id={`${movie.id}`} className="rounded-2xl overflow-hidden shadow-md relative hover:scale-[1.02] transition-transform duration-250 cursor-pointer active:scale-[0.97]" onClick={() => router.push(`/${movie.id}`)}>
             <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} width={500} height={750} alt={movie.title} />
             <div className="bg-gradient-black absolute h-[50%] w-full bottom-0 px-4 pb-4 flex flex-col-reverse">
                 <p className="text-s">{movie.release_date.slice(0, 4)}</p>
