@@ -40,23 +40,24 @@ export const authOptions: AuthOptions = {
       }
     })
   ], 
-  // callbacks: {
-  //   async jwt({ token, user }): Promise<any> {
-  //     if (user) {
-  //       return {
-  //         ...token,
-  //         username: user.name
-  //       }
-  //     }
-  //   },
-  //   async session({ session, token }) {
-  //     return {
-  //       ...session,
-  //       user: {
-  //         ...session.user,
-  //         username: token.username
-  //       }
-  //     }
-  //   }
-  // }
+  callbacks: {
+    async jwt({user, token}): Promise<any> {
+      if (user) {
+        return {
+          ...token,
+          id: user.id
+        }
+      }
+      return token
+    },
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id
+        }
+      }
+    }
+  }
 }

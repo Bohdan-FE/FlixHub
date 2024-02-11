@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { signIn } from 'next-auth/react';
 
+
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z.string().min(6, {message: 'Password must have more than 6 characters'}),
@@ -37,11 +38,11 @@ export async function login(prevState: State, formData: FormData): Promise<State
 
     const { email, password } = validatedFields.data
     try {
-        const signInData = await signIn('credentials', { email, password })
+        const signInData = await signIn('credentials', { email, password, redirect: true })
         if (signInData?.error) {
             return {message: 'Email or password incorrect'}
         }
-        return {message: 'loged in'}
+        return {message: ''}
     } catch (error) {
         return {
             message: 'Data Base error', fieldValues: {
