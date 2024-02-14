@@ -73,7 +73,7 @@ function PaginationNumber({
     const className = clsx(
         'flex h-10 w-10 items-center justify-center transition-all text-md  rounded-full border-2 border-neutral-500 text-neutral-500',
         {
-            'bg-neutral-300 h-12 w-12 text-black text-xl font-semibold border-neutral-200': isActive,
+            'bg-neutral-300 h-12 w-12 text-neutral-700 text-xl font-semibold border-neutral-200': isActive,
             'hover:border-neutral-200 hover:text-neutral-200': !isActive && position !== 'middle',
             'text-gray-300': position === 'middle',
         },
