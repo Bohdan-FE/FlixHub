@@ -33,8 +33,9 @@ function StarRating({ rating }: { rating: number }) {
     }
 
     return (
-        <div className="flex justify-end mb-4 mt-4">
+        <div className="flex justify-end mb-4 mt-4 items-center">
             {stars.map((star, index) => <Star star={star} key={index} />)}
+            <p className="text-2xl block ml-1 py-1 px-2 rounded-xl bg-[rgba(46,45,45,0.7)]">{rating.toFixed(1)}</p>
         </div>
     );
 }

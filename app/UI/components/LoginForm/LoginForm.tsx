@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormState } from "react-dom";
-import SubmitButton from "../buttons";
+import { SubmitButton } from "../buttons";
 import styles from '../RegisterForm/RegisterForm.module.scss'
 import clsx from 'clsx'
 import { login } from "@/app/lib/loginAction";

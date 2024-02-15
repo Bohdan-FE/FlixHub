@@ -3,7 +3,7 @@
 import { register } from "@/app/lib/registerAction";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import SubmitButton from "../buttons";
+import { SubmitButton } from "../buttons";
 import styles from './RegisterForm.module.scss'
 import clsx from 'clsx'
 import { useRouter } from "next/navigation";
