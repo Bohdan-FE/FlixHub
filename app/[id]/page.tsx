@@ -1,13 +1,15 @@
-import Image from "next/image";
+
 import { getMovieById } from "../lib/getMovieById";
 import StarRating from "../UI/components/StarRating/StarRating";
 import { convertToHoursAndMinutes } from "../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { AddToFavorite } from "../UI/components/buttons";
+import Poster from "../UI/components/Poster/Paster";
+import { getVideos } from "../lib/getVideos";
 
 async function Page({ params }: { params: { id: string } }) {
-    const movie: MovieDetailed = await getMovieById(params.id)
+    const [movie, videos]: [movie: MovieDetailed, VideoData] = await Promise.all([getMovieById(params.id), getVideos(params.id)])
 
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.2) 45%), 
@@ -22,9 +24,7 @@ async function Page({ params }: { params: { id: string } }) {
     return (
         <div className='w-full aspect-video mx-auto max-h-[564px]' style={backgroundImageStyle}>
             <div className="flex max-w-7xl py-12 px-3 justify-between gap-12 mx-auto">
-                <div className="flex items-center">
-                    <Image className="blok rounded-xl shadow-filmCard  w-[376] h-[564]" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} width={376} height={564} alt={movie.title} />
-                </div>
+                <Poster image={movie.poster_path} title={movie.title} videos={videos} />
                 <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                     <div>
                         <h1 className="text-7xl text-neutral-200 font-bold text-right block text-ellipsis">{movie.title}</h1>
