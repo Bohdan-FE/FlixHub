@@ -1,6 +1,5 @@
 'use client'
 import Link from "next/link";
-import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.scss'
 import { signOut, useSession } from "next-auth/react";
