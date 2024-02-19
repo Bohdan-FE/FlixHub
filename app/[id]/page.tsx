@@ -8,10 +8,10 @@ import { AddToFavorite } from "../UI/components/buttons";
 import Poster from "../UI/components/Poster/Paster";
 import { getVideos } from "../lib/getVideos";
 import Recomendation from "../UI/components/Recomendation/Recomendation";
-import { getMovies } from "../lib/getMovies";
+import { getRecomendations } from "../lib/getRecomendations";
 
 async function Page({ params }: { params: { id: string } }) {
-    const [movie, videos, { results }]: [movie: MovieDetailed, VideoData, MoviesData] = await Promise.all([getMovieById(params.id), getVideos(params.id), getMovies()])
+    const [movie, videos, { results }]: [movie: MovieDetailed, VideoData, MoviesData] = await Promise.all([getMovieById(params.id), getVideos(params.id), getRecomendations(params.id)])
 
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.8) 10%, rgba(0,0,0,0.2) 45%), 
@@ -26,7 +26,7 @@ async function Page({ params }: { params: { id: string } }) {
     return (
         <div className='w-full aspect-video mx-auto max-h-[564px]' style={backgroundImageStyle}>
             <div className="max-w-7xl py-12 px-3 mx-auto">
-                <div className="flex justify-between gap-12 mb-9">
+                <div className="flex justify-between gap-12 mb-20">
                     <Poster image={movie.poster_path} title={movie.title} videos={videos} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                         <div>
@@ -50,8 +50,8 @@ async function Page({ params }: { params: { id: string } }) {
                         </div>
                     </div>
                 </div>
-                <h2 className="text-neutral-300 font-medium text-3xl mb-6">Recomendation:</h2>
-                <div className="max-w-6xl mx-auto overflow-hidden relative px-4">
+                <h2 className="text-neutral-300 font-semibold text-4xl mb-6 text-center">Recomendations:</h2>
+                <div className="max-w-7xl mx-auto overflow-hidden relative px-4 flex">
                     <Recomendation movies={results} />
                 </div>
             </div>
