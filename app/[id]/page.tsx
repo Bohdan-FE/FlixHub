@@ -51,7 +51,7 @@ async function Page({ params }: { params: { id: string } }) {
                     </div>
                 </div>
                 <h2 className="text-neutral-300 font-medium text-3xl mb-6">Recomendation:</h2>
-                <div className="max-w-6xl mx-auto overflow-hidden relative">
+                <div className="max-w-6xl mx-auto overflow-hidden relative px-4">
                     <Recomendation movies={results} />
                 </div>
             </div>
