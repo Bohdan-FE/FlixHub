@@ -12,10 +12,20 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'gradient-black': 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
+        'gradient-black': 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+        'gradient-watch': 'linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8744747899159664) 65%);'
       },
       boxShadow: {
         'filmCard' : '0px 0px 30px 11px rgba(128,119,128,0.3)'
+      },
+      keyframes: {
+        watch: {
+          '0%, 100%': { transform: 'translateX(30px)' },
+          '50%': { transform: 'translateX(20px)' },
+        }
+      },
+      animation: {
+        watch: 'watch 1s ease-in-out infinite',
       }
     },
   },

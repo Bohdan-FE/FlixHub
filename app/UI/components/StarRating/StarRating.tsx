@@ -4,6 +4,7 @@ import { TiStarHalfOutline } from "react-icons/ti";
 import { TiStarOutline } from "react-icons/ti";
 
 function StarRating({ rating }: { rating: number }) {
+    if (!rating) return
 
     const ratingRounded = Math.round(rating) / 2
 

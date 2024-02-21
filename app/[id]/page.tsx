@@ -5,10 +5,11 @@ import { convertToHoursAndMinutes } from "../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { AddToFavorite } from "../UI/components/buttons";
-import Poster from "../UI/components/Poster/Paster";
+import Poster from "../UI/components/Poster/Poster";
 import { getVideos } from "../lib/getVideos";
 import Recomendation from "../UI/components/Recomendation/Recomendation";
 import { getRecomendations } from "../lib/getRecomendations";
+import Reviews from "../UI/components/Reviews/Reviews";
 
 async function Page({ params }: { params: { id: string } }) {
     const [movie, videos, { results }]: [movie: MovieDetailed, VideoData, MoviesData] = await Promise.all([getMovieById(params.id), getVideos(params.id), getRecomendations(params.id)])
@@ -41,7 +42,7 @@ async function Page({ params }: { params: { id: string } }) {
                                 <LuCalendarCheck2 className="w-8 h-8" />
                                 <p className="text-end text-xl text-neutral-300"><span className="font-semibold">{movie.release_date}</span></p>
                             </div>
-                            <div data-te-perfect-scrollbar-init className="flex justify-end py-2 bg-[rgba(46,45,45,0.5)] rounded-lg px-4">
+                            <div data-te-perfect-scrollbar-init className="flex justify-end py-2 bg-[rgba(46,45,45,0.7)] rounded-lg px-4">
                                 <p className="text-justify text-neutral-300 ">{movie.overview}</p>
                             </div>
                         </div>
@@ -50,10 +51,8 @@ async function Page({ params }: { params: { id: string } }) {
                         </div>
                     </div>
                 </div>
-                <h2 className="text-neutral-300 font-semibold text-4xl mb-6 text-center">Recomendations:</h2>
-                <div className="max-w-7xl mx-auto overflow-hidden relative px-4 flex">
-                    <Recomendation movies={results} />
-                </div>
+                <Recomendation movies={results} title="Similar" />
+                <Reviews id={params.id} />
             </div>
         </div>
     );

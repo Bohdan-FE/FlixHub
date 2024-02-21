@@ -11,25 +11,27 @@ import MovieCard from '../MovieCard/MovieCard';
 
 
 
-function Recomendation({ movies }: { movies: Movie[] }) {
+function Recomendation({ movies, title }: { movies: Movie[], title: string }) {
 
     if (movies.length < 1) return
 
     return (<>
+        <h2 className="text-neutral-300 font-semibold text-4xl mb-6 text-center">{title}:</h2>
+        <div className="max-w-7xl mx-auto overflow-hidden relative px-4 flex">
+            <Swiper
+                style={{ paddingBottom: '32px' }}
+                modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
+                mousewheel={true}
+                spaceBetween={20}
+                slidesPerView={7}
+                pagination={{ clickable: true }}
+            >
 
-        <Swiper
-            style={{ paddingBottom: '32px' }}
-            modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
-            mousewheel={true}
-            spaceBetween={20}
-            slidesPerView={7}
-            pagination={{ clickable: true }}
-        >
-
-            {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCard movie={movie} /></SwiperSlide>)}
-            {/* <BtnLeft />
+                {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCard movie={movie} /></SwiperSlide>)}
+                {/* <BtnLeft />
             <BtnRight /> */}
-        </Swiper>
+            </Swiper>
+        </div >
     </>
 
     );
