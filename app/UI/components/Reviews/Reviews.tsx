@@ -8,12 +8,12 @@ async function Reviews({ id }: { id: string }) {
     const reviews = reviewsData.results
     if (reviews.length < 1) return
     return (
-        <>
-            <h2>Reviews</h2>
+        <div className="max-w-7xl mx-auto" >
+            <h2 className="text-neutral-300 font-semibold text-4xl mb-6 text-center">Reviews:</h2>
             <ul>
                 {reviews.map(item => <ReviewCard key={item.id} review={item} />)}
             </ul>
-        </>
+        </div>
 
     );
 }
