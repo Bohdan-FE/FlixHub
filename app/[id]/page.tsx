@@ -27,8 +27,11 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (
         <>
-            <div className='w-full mx-auto mb-3 relative' style={backgroundImageStyle}>
-                <button className="absolute top-0 right-1/3 bg-neutral-900 p-4">fejevink</button>
+            <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
+                <div className="absolute top-0 right-1/4 w-[320px]">
+                    <button className="absolute top-0 left-0 z-10 font-bold bg-neutral-800 pb-2 px-16 [clip-path:polygon(0%_0%,100%_0%,83%_100%,19%_100%)] shadow-lg">DETAILS</button>
+                    <button className="absolute top-0 right-0 z-0 font-bold bg-neutral-700 pb-2 px-16 [clip-path:polygon(0%_0%,100%_0%,83%_100%,19%_100%)] shadow-lg">CAST</button>
+                </div>
                 <div className="max-w-7xl py-12 px-3 mx-auto">
                     <div className="flex justify-between gap-12">
                         <Poster image={movie.poster_path} title={movie.title} videos={videos} />

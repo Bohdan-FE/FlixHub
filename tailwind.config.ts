@@ -16,7 +16,8 @@ const config: Config = {
         'gradient-watch': 'linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8744747899159664) 65%);'
       },
       boxShadow: {
-        'filmCard' : '0px 0px 30px 11px rgba(128,119,128,0.3)'
+        'filmCard': '0px 0px 30px 11px rgba(128,119,128,0.3)',
+        'sliderBtm': '0px 0px 15px 11px rgba(128,119,128,0.3)'
       },
       keyframes: {
         watch: {
