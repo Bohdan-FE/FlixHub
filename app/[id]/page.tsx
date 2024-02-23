@@ -7,9 +7,10 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { AddToFavorite } from "../UI/components/buttons";
 import Poster from "../UI/components/Poster/Poster";
 import { getVideos } from "../lib/getVideos";
-import Recomendation from "../UI/components/Recomendation/Recomendation";
+import Recomendation from "../UI/components/Slider/Slider";
 import { getRecomendations } from "../lib/getRecomendations";
 import Reviews from "../UI/components/Reviews/Reviews";
+import SliderPart from "../UI/components/SliderPart/SliderPart";
 
 async function Page({ params }: { params: { id: string } }) {
     const [movie, videos, { results }]: [movie: MovieDetailed, VideoData, MoviesData] = await Promise.all([getMovieById(params.id), getVideos(params.id), getRecomendations(params.id)])
@@ -26,7 +27,7 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (
         <>
-            <div className='w-full mx-auto' style={backgroundImageStyle}>
+            <div className='w-full mx-auto mb-3' style={backgroundImageStyle}>
                 <div className="max-w-7xl py-12 px-3 mx-auto">
                     <div className="flex justify-between gap-12">
                         <Poster image={movie.poster_path} title={movie.title} videos={videos} />
@@ -55,7 +56,7 @@ async function Page({ params }: { params: { id: string } }) {
 
                 </div>
             </div>
-            <Recomendation movies={results} title="Similar" />
+            <SliderPart id={params.id} />
             <Reviews id={params.id} />
         </>
     );

@@ -7,16 +7,15 @@ import 'swiper/css';
 import 'swiper/css/navigation'
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import MovieCard from '../MovieCard/MovieCard';
+import MovieCardMini from '../MovieCardMini/MovieCardMini';
 
 
 
-function Recomendation({ movies, title }: { movies: Movie[], title: string }) {
+function Slider({ movies }: { movies: Movie[] }) {
 
     if (movies.length < 1) return
 
-    return (<>
-        <h2 className="text-neutral-300 font-semibold text-4xl mb-6 text-center">{title}:</h2>
+    return (
         <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-4">
             <Swiper
                 style={{ paddingBottom: '50px' }}
@@ -29,11 +28,11 @@ function Recomendation({ movies, title }: { movies: Movie[], title: string }) {
                         slidesPerView: 4,
                         spaceBetween: 30,
                     },
-                    768: {
+                    1024: {
                         slidesPerView: 5,
                         spaceBetween: 30,
                     },
-                    1024: {
+                    1200: {
                         slidesPerView: 7,
                         spaceBetween: 30,
                     },
@@ -44,18 +43,16 @@ function Recomendation({ movies, title }: { movies: Movie[], title: string }) {
 
                 }}
             >
-                {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCard movie={movie} /></SwiperSlide>)}
+                {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCardMini movie={movie} /></SwiperSlide>)}
                 {/* <BtnLeft />
                 <BtnRight /> */}
             </Swiper>
 
         </div >
-    </>
-
     );
 }
 
-export default Recomendation;
+export default Slider;
 
 function BtnLeft() {
     const swiper = useSwiper();
