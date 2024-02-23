@@ -18,7 +18,7 @@ function Slider({ movies }: { movies: Movie[] }) {
     return (
         <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-4">
             <Swiper
-                style={{ paddingBottom: '50px' }}
+                style={{ paddingBottom: '50px', paddingInline: '50px' }}
                 modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
                 mousewheel={true}
                 spaceBetween={20}
@@ -44,8 +44,8 @@ function Slider({ movies }: { movies: Movie[] }) {
                 }}
             >
                 {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCardMini movie={movie} /></SwiperSlide>)}
-                {/* <BtnLeft />
-                <BtnRight /> */}
+                <BtnLeft />
+                <BtnRight />
             </Swiper>
 
         </div >
@@ -57,14 +57,14 @@ export default Slider;
 function BtnLeft() {
     const swiper = useSwiper();
     return (
-        <button className='swiper-button-next bg-[rgba(46,45,45,0.8)] p-1 rounded-full absolute bottom-[24px] left-1/2 z-10 translate-x-[-70px]' onClick={() => swiper.slidePrev()}><IoIosArrowBack className='w-8 h-8' /></button>
+        <button className=' bg-neutral-900 p-1 absolute h-[calc(100%-50px)] z-10 left-0 top-0 group' onClick={() => swiper.slidePrev()}><IoIosArrowBack className='w-8 h-8 fill-neutral-500 group-hover:fill-neutral-200 transition-colors' /></button>
     )
 }
 
 function BtnRight() {
     const swiper = useSwiper();
     return (
-        <button className='swiper-button-next bg-[rgba(46,45,45,0.8)] p-1 rounded-full absolute bottom-[24px] right-1/2 z-10 translate-x-[70px]' onClick={() => swiper.slideNext()}><IoIosArrowForward className='w-8 h-8' /></button>
+        <button className='bg-neutral-900 p-1 absolute h-[calc(100%-50px)] z-10 right-0 top-0 group' onClick={() => swiper.slideNext()}><IoIosArrowForward className='w-8 h-8 fill-neutral-500 group-hover:fill-neutral-200 transition-colors' /></button>
     )
 }
 

@@ -16,7 +16,7 @@ async function Page({ params }: { params: { id: string } }) {
     const [movie, videos, { results }]: [movie: MovieDetailed, VideoData, MoviesData] = await Promise.all([getMovieById(params.id), getVideos(params.id), getRecomendations(params.id)])
 
     const backgroundImageStyle = {
-        backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 23%),
+        backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
                         linear-gradient(90deg, rgba(0,0,0,0.8744747899159664) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8744747899159664) 100%),
                         url("https://image.tmdb.org/t/p/original${movie.backdrop_path}") `,
         backgroundSize: 'cover',
@@ -27,7 +27,8 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (
         <>
-            <div className='w-full mx-auto mb-3' style={backgroundImageStyle}>
+            <div className='w-full mx-auto mb-3 relative' style={backgroundImageStyle}>
+                <button className="absolute top-0 right-1/3 bg-neutral-900 p-4">fejevink</button>
                 <div className="max-w-7xl py-12 px-3 mx-auto">
                     <div className="flex justify-between gap-12">
                         <Poster image={movie.poster_path} title={movie.title} videos={videos} />

@@ -13,7 +13,7 @@ function MovieCardMini({ movie }: { movie: Movie }) {
 
     return (
         <li id={`${movie.id}`} className="rounded-2xl overflow-hidden shadow-md relative transition-transform duration-250 cursor-pointer active:scale-[0.97]" onClick={() => router.push(`/${movie.id}`)}>
-            <Image className="h-[236px] w-[157px]" src={src} width={500} height={750} alt={movie.title} onError={e => setSrc(defaultPoster)} />
+            <Image className="" src={src} width={500} height={750} alt={movie.title} onError={e => setSrc(defaultPoster)} />
             <div className="bg-gradient-black absolute h-[50%] w-full bottom-0 px-4 pb-4 flex flex-col-reverse">
                 <p className="italic text-sm">{movie.release_date.slice(0, 4)}</p>
                 <p className="text-sm font-bold ">{movie.title}</p>
