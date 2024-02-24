@@ -11,7 +11,7 @@ function Poster({ image, title, videos }: { image: string | null, title: string,
     const [isActive, setIsActive] = useState<Boolean>(false)
     const [isPlay, setIsPlay] = useState<Boolean>(true)
     const videosArr = videos.results
-    const trailerKey = videosArr.filter(video => video.type === 'Trailer')[0]?.key
+    const trailerKey = videosArr.filter(video => video.type === 'Trailer' || 'Teaser')[0]?.key
 
     const onClickHandler = () => {
         setIsActive(!isActive)
