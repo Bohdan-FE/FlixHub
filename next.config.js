@@ -2,13 +2,13 @@
 const path = require('path')
 
 const nextConfig = {
-    experimental: {
-        serverComponentsExternalPackages: ['@prisma/client', 'bcrypt']
-    },
-     sassOptions: {
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client', 'bcrypt']
+  },
+  sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-     images: {
+  images: {
     remotePatterns: [
       {
         protocol: 'https',
@@ -17,6 +17,7 @@ const nextConfig = {
         pathname: '/t/p/**',
       },
     ],
+    unoptimized: true
   },
 }
 
