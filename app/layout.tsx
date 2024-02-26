@@ -6,6 +6,7 @@ import Provider from './UI/components/Provider/Provider'
 
 
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <main>
             <Header />
-            {children}
+            <div className='relative'>{children}</div>
           </main>
         </body>
       </Provider>

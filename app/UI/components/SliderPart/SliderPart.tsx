@@ -28,7 +28,7 @@ function SliderPart({ id }: { id: string }) {
 
     return (
         <div>
-            <div className="mx-auto w-96 mb-6 rounded-2xl transition-all bg-neutral-800">
+            <div className="mx-auto w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
                 <button className={clsx("w-1/2 p-3 text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all", {
                     'shadow-sliderBtm bg-neutral-600': isRecomendation
                 })} onClick={() => setisRecomendation(true)}>Recommendation</button>

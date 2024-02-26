@@ -16,7 +16,7 @@ function Slider({ movies }: { movies: Movie[] }) {
     if (movies.length < 1) return
 
     return (
-        <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-4">
+        <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-10">
             <Swiper
                 style={{ paddingBottom: '50px', paddingInline: '50px' }}
                 modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
