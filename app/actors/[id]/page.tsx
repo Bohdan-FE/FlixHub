@@ -1,7 +1,7 @@
 import { getActorData } from "@/app/lib/getActorData";
 import { getActorMovies } from "@/app/lib/getActorMovies";
 
-export async function Page({ params }: { params: { id: string } }) {
+async function Page({ params }: { params: { id: string } }) {
     const [actorInfo, actorFilms] = await Promise.all([getActorData(params.id), getActorMovies(params.id)])
 
     return (
