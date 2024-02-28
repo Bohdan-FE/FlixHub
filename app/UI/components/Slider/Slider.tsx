@@ -8,12 +8,13 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import MovieCardMini from '../MovieCardMini/MovieCardMini';
+import TVCardMini from '../TVCardMini/TVCardMini';
 
 
 
-function Slider({ movies }: { movies: Movie[] }) {
+function Slider({ data, type }: { data: Movie[] | TVShow[], type: 'movie' | 'tv' }) {
 
-    if (movies.length < 1) return
+    if (data.length < 1) return
 
     return (
         <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-10">
@@ -43,7 +44,10 @@ function Slider({ movies }: { movies: Movie[] }) {
 
                 }}
             >
-                {movies.map((movie, index) => <SwiperSlide key={movie.id} virtualIndex={index}><MovieCardMini movie={movie} /></SwiperSlide>)}
+                {data.map((data, index) => {
+                    if (type === 'movie') { return <SwiperSlide key={data.id} virtualIndex={index}><MovieCardMini movie={data as Movie} /></SwiperSlide> }
+                    if (type === 'tv') { return <SwiperSlide key={data.id} virtualIndex={index}><TVCardMini tv={data as TVShow} /></SwiperSlide> }
+                })}
                 <BtnLeft />
                 <BtnRight />
             </Swiper>

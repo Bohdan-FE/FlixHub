@@ -1,18 +1,19 @@
 
-import { getMovieById } from "../lib/getMovieById";
 import StarRating from "../UI/components/StarRating/StarRating";
 import { convertToHoursAndMinutes } from "../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { AddToFavorite } from "../UI/components/buttons";
 import Poster from "../UI/components/Poster/Poster";
-import { getVideos } from "../lib/getVideos";
 import SliderPart from "../UI/components/SliderPart/SliderPart";
+import { getMovieVideos } from "../lib/getMovieVideos";
+import { getMovieById } from "../lib/getMovieById";
 import Reviews from "../UI/components/Reviews/Reviews";
 
 
+
 async function Page({ params }: { params: { id: string } }) {
-    const [movie, videos]: [movie: MovieDetailed, VideoData] = await Promise.all([getMovieById(params.id), getVideos(params.id)])
+    const [movie, videos] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id)])
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
                         linear-gradient(90deg, rgba(0,0,0,0.8744747899159664) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8744747899159664) 100%),
@@ -53,7 +54,7 @@ async function Page({ params }: { params: { id: string } }) {
 
             </div>
         </div>
-        <SliderPart id={params.id} />
+        <SliderPart id={params.id} type="movie" />
         <Reviews id={params.id} />
     </>
     );

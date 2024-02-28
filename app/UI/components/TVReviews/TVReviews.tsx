@@ -1,8 +1,9 @@
-import { getReviews } from "@/app/lib/getReviews";
-import ReviewCard from "../ReviewCard/ReviewCard";
 
-async function Reviews({ id }: { id: string }) {
-    const reviewsData = await getReviews(id)
+import ReviewCard from "../ReviewCard/ReviewCard";
+import { getTVReviews } from "@/app/lib/getTVReviews";
+
+async function TVReviews({ id }: { id: string }) {
+    const reviewsData = await getTVReviews(id)
     const reviews = reviewsData.results
     if (reviews.length < 1) return
     return (
@@ -16,4 +17,4 @@ async function Reviews({ id }: { id: string }) {
     );
 }
 
-export default Reviews;
+export default TVReviews;

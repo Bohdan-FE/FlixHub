@@ -1,6 +1,6 @@
 import CastCard from "@/app/UI/components/CastCard/CastCard";
 import { getCastById } from "@/app/lib/getCastById";
-import Image from "next/image";
+
 
 async function Cast({ params }: { params: { id: string } }) {
     const castData = await getCastById(params.id)

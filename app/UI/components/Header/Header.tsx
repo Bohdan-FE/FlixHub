@@ -17,7 +17,7 @@ function Header() {
                 <nav>
                     <ul className="flex gap-8">
                         <li className="relative"><Link className={pathname === '/' ? styles.activeLink : styles.link} href={'/'}>Movies</Link></li>
-                        <li className="relative"><Link className={pathname === '/serials' ? styles.activeLink : styles.link} href={'/serials'}>TV shows</Link></li>
+                        <li className="relative"><Link className={pathname === '/tv' ? styles.activeLink : styles.link} href={'/tv'}>TV shows</Link></li>
                         {!data && <ul className="flex gap-2">
                             <li className="relative"><Link className={pathname === '/login' ? styles.activeLink : styles.link} href={'/login'}>Login</Link></li>
                             <span className="block w-[1px] h-full bg-neutral-400"></span>

@@ -6,15 +6,15 @@ import Slider from "../Slider/Slider";
 import clsx from "clsx";
 import { getSimilar } from "@/app/lib/getSimilar";
 
-function SliderPart({ id }: { id: string }) {
+function SliderPart({ id, type }: { id: string, type: 'movie' | 'tv' }) {
     const [isRecomendation, setisRecomendation] = useState<boolean>(true)
-    const [recomandationData, setRecomandationData] = useState<MoviesData | null>(null)
-    const [similarData, setSimilarData] = useState<MoviesData | null>(null)
+    const [recomandationData, setRecomandationData] = useState<MoviesData | TVData | null>(null)
+    const [similarData, setSimilarData] = useState<MoviesData | TVData | null>(null)
 
     useEffect(() => {
         async function getSliderData() {
             try {
-                const [recomandation, similar] = await Promise.all([getRecomendations(id), getSimilar(id)])
+                const [recomandation, similar] = await Promise.all([getRecomendations(id, type), getSimilar(id, type)])
                 setRecomandationData(recomandation)
                 setSimilarData(similar)
             } catch (error) {
@@ -25,6 +25,7 @@ function SliderPart({ id }: { id: string }) {
     }, [id, isRecomendation])
 
     if (!recomandationData || !similarData) return
+    if (recomandationData?.results.length === 0 && similarData?.results.length === 0) return
 
     return (
         <div>
@@ -36,8 +37,8 @@ function SliderPart({ id }: { id: string }) {
                     'shadow-sliderBtm bg-neutral-600': !isRecomendation
                 })} onClick={() => setisRecomendation(false)}>Similar</button>
             </div>
-            {isRecomendation && <Slider movies={recomandationData.results} />}
-            {!isRecomendation && <Slider movies={similarData.results} />}
+            {isRecomendation && <Slider data={recomandationData.results} type={type} />}
+            {!isRecomendation && <Slider data={similarData.results} type={type} />}
         </div>
     )
 }

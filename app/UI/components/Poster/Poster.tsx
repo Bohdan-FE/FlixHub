@@ -13,7 +13,7 @@ function Poster({ image, title, videos }: { image: string | null, title: string,
     const videosArr = videos.results
     const trailerKey = videosArr.filter(video => video.type === 'Trailer')[0]?.key
     const teaserKey = videosArr.filter(video => video.type === 'Teaser')[0]?.key
-    const youtubeKey = trailerKey.length !== 0 ? trailerKey : teaserKey
+    const youtubeKey = trailerKey?.length !== 0 ? trailerKey : teaserKey
 
     const onClickHandler = () => {
         setIsActive(!isActive)
@@ -30,7 +30,7 @@ function Poster({ image, title, videos }: { image: string | null, title: string,
             <div className={clsx('relative transform-style-3d perspective-1000 transition-all w-[376px] h-[564px] duration-500 rounded-xl', { 'rotate-90 scale-150 translate-x-[75%]': isActive })}>
                 <div className={clsx("backface-hidden transition-all absolute left-0 top-0 w-full h-full rounded-xl overflow-hidden duration-500 shadow-filmCard", { 'rotate-y-[540deg]': isActive })} >
                     <Image className="rounded-xl blok w-[376px] h-[564px]" src={`https://image.tmdb.org/t/p/w500${image}`} width={376} height={564} alt={title} />
-                    <div className="absolute top-6 right-0 bg-gradient-watch rounded-l-2xl">{youtubeKey.length !== 0 && <button className="flex items-center italic animate-watch" onClick={onClickHandler}>WATCH TRAILER<IoIosArrowForward className="w-10 h-10" /><IoIosArrowForward className="w-10 h-10 translate-x-[-25px]" /></button>}</div>
+                    {youtubeKey && <div className="absolute top-6 right-0 bg-gradient-watch rounded-l-2xl">{youtubeKey?.length !== 0 && <button className="flex items-center italic animate-watch" onClick={onClickHandler}>WATCH TRAILER<IoIosArrowForward className="w-10 h-10" /><IoIosArrowForward className="w-10 h-10 translate-x-[-25px]" /></button>}</div>}
                 </div>
                 <div className={clsx("backface-hidden transition-all absolute left-0 top-0 w-full h-full rotate-y-180 duration-500 shadow-filmCard rounded-xl", { 'rotate-y-[720deg]': isActive })}>
                     <div className="bg-black w-full h-full relative rounded-xl">

@@ -1,8 +1,8 @@
 'use server'
 const { API_KEY } = process.env
 
-export const getSimilar = async (id: string) => {
-    const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${API_KEY}`);
+export const getSimilar = async (id: string, type: 'movie' | 'tv') => {
+    const resp = await fetch(`https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${API_KEY}`);
     if (!resp.ok) {
     throw new Error('Failed to fetch data')
     }
