@@ -4,7 +4,7 @@ import { getMovies } from "./lib/getMovies"
 
 export default async function Home({ searchParams }: { searchParams: { page: string } }) {
   const movies: MoviesData = await getMovies(searchParams.page)
-  if (Number(movies.total_pages)) movies.total_pages = '500'
+  if (Number(movies.total_pages) > 500) movies.total_pages = '500'
 
 
   return (
