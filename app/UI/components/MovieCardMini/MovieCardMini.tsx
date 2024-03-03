@@ -12,7 +12,7 @@ function MovieCardMini({ movie }: { movie: Movie }) {
     const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${movie.poster_path}`)
 
     return (
-        <li id={`${movie.id}`} className="h-full rounded-2xl overflow-hidden shadow-md relative transition-transform duration-250 cursor-pointer active:scale-[0.97]" onClick={() => router.push(`/${movie.id}`)}>
+        <li id={`${movie.id}`} className="h-full rounded-2xl overflow-hidden shadow-md relative transition-transform duration-250 cursor-pointer active:scale-[0.97]" onClick={() => router.push(`/movies/${movie.id}`)}>
             <Image className="h-full" src={src} width={500} height={750} alt={movie.title} onError={e => setSrc(defaultPoster)} />
             <div className="bg-gradient-black absolute h-[50%] w-full bottom-0 px-4 pb-4 flex flex-col-reverse">
                 <p className="italic text-sm">{movie.release_date.slice(0, 4)}</p>
