@@ -1,5 +1,5 @@
 
-import MovieNavigation from "../UI/components/MovieNavigation/MovieNavigation"
+import MovieNavigation from "../../UI/components/MovieNavigation/MovieNavigation"
 
 
 export default function RootLayout({

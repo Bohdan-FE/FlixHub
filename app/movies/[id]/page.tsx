@@ -1,14 +1,14 @@
 
-import StarRating from "../UI/components/StarRating/StarRating";
-import { convertToHoursAndMinutes } from "../lib/convertToHoursAndMinutes";
+import StarRating from "../../UI/components/StarRating/StarRating";
+import { convertToHoursAndMinutes } from "../../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
-import { AddToFavorite } from "../UI/components/buttons";
-import Poster from "../UI/components/Poster/Poster";
-import SliderPart from "../UI/components/SliderPart/SliderPart";
-import { getMovieVideos } from "../lib/getMovieVideos";
-import { getMovieById } from "../lib/getMovieById";
-import Reviews from "../UI/components/Reviews/Reviews";
+import { AddToFavorite } from "../../UI/components/buttons";
+import Poster from "../../UI/components/Poster/Poster";
+import SliderPart from "../../UI/components/SliderPart/SliderPart";
+import { getMovieVideos } from "../../lib/getMovieVideos";
+import { getMovieById } from "../../lib/getMovieById";
+import Reviews from "../../UI/components/Reviews/Reviews";
 
 
 
