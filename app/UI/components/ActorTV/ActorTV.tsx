@@ -5,7 +5,7 @@ import TVCard from "../TVCard/TVcard";
 async function ActorTV({ id }: { id: string }) {
     const data = await getActorTV(id)
     return (
-        <ul className="grid grid-cols-5 gap-x-12 gap-y-12 py-12">{data.cast.map(movie => <TVCard key={movie.id} tv={movie} />)}</ul>
+        <ul className="grid grid-cols-5 gap-x-12 gap-y-12 mb-8">{data.cast.map(movie => <TVCard key={movie.id} tv={movie} />)}</ul>
     );
 }
 

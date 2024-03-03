@@ -1,8 +1,6 @@
-import ActorMovies from "@/app/UI/components/ActorMovies/ActorMovies";
-import ActorTV from "@/app/UI/components/ActorTV/ActorTV";
+import { PickActorsMovies } from "@/app/UI/components/PickActorsMovies/PickActorsMovies";
 import { getActorData } from "@/app/lib/getActorData";
 import Image from "next/image";
-import { Suspense } from "react";
 
 
 async function Page({ params }: { params: { id: string } }) {
@@ -10,7 +8,7 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (
         <div className="max-w-7xl mx-auto">
-            <div className="flex gap-8">
+            <div className="flex gap-8 mb-8">
                 <div className="shrink-0 w-[300px] h-[450px] rounded-2xl overflow-hidden">
                     <Image className="w-full" src={`https://image.tmdb.org/t/p/w300${actorInfo.profile_path}`} alt={actorInfo.name} width={500} height={700} />
                 </div>
@@ -20,12 +18,7 @@ async function Page({ params }: { params: { id: string } }) {
                     <p className="text-neutral-400">{actorInfo.biography}</p>
                 </div>
             </div>
-            <Suspense>
-                <ActorMovies id={params.id} />
-            </Suspense>
-            <Suspense>
-                <ActorTV id={params.id} />
-            </Suspense>
+            <PickActorsMovies id={params.id} />
         </div>
     );
 }
