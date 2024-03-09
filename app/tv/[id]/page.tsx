@@ -47,7 +47,7 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            <AddToFavorite />
+                            {/* <AddToFavorite /> */}
                         </div>
                     </div>
                 </div>
