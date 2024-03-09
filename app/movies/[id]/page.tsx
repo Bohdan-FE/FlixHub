@@ -9,11 +9,18 @@ import SliderPart from "../../UI/components/SliderPart/SliderPart";
 import { getMovieVideos } from "../../lib/getMovieVideos";
 import { getMovieById } from "../../lib/getMovieById";
 import Reviews from "../../UI/components/Reviews/Reviews";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/lib/auth";
+import { getFavouriteMovies } from "@/app/lib/getFavoriteMovies";
 
 
 
 async function Page({ params }: { params: { id: string } }) {
-    const [movie, videos] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id)])
+    const [movie, videos, session] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id), getServerSession(authOptions)])
+    let favouriteMovies
+    if (session) {
+        favouriteMovies = await getFavouriteMovies(Number(session.user.id))
+    }
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
                         linear-gradient(90deg, rgba(0,0,0,0.8744747899159664) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8744747899159664) 100%),
@@ -28,7 +35,7 @@ async function Page({ params }: { params: { id: string } }) {
         <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
             <div className="max-w-7xl py-12 px-3 mx-auto">
                 <div className="flex justify-between gap-12">
-                    <Poster image={movie.poster_path} title={movie.title} videos={videos} />
+                    <Poster image={movie.poster_path} title={movie.title} videos={videos.results} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                         <div>
                             <h1 className="text-7xl text-neutral-200 font-bold text-right block text-ellipsis">{movie.title}</h1>
@@ -47,7 +54,7 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            <AddToFavorite movie={movie} />
+                            {session && <AddToFavorite movie={movie} videos={videos.results} userId={session?.user.id} />}
                         </div>
                     </div>
                 </div>

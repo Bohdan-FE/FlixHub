@@ -7,12 +7,11 @@ import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward } from "react-icons/io";
 
 
-function Poster({ image, title, videos }: { image: string | null, title: string, videos: VideoData }) {
+function Poster({ image, title, videos }: { image: string | null, title: string, videos: Video[] }) {
     const [isActive, setIsActive] = useState<Boolean>(false)
     const [isPlay, setIsPlay] = useState<Boolean>(true)
-    const videosArr = videos.results
-    const trailerKey = videosArr.filter(video => video.type === 'Trailer')[0]?.key
-    const teaserKey = videosArr.filter(video => video.type === 'Teaser')[0]?.key
+    const trailerKey = videos.filter(video => video.type === 'Trailer')[0]?.key
+    const teaserKey = videos.filter(video => video.type === 'Teaser')[0]?.key
     const youtubeKey = trailerKey?.length !== 0 ? trailerKey : teaserKey
 
     const onClickHandler = () => {

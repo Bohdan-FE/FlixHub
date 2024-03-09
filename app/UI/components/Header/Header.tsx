@@ -23,7 +23,7 @@ function Header() {
                             <span className="block w-[1px] h-full bg-neutral-400"></span>
                             <li className="relative"><Link className={pathname === '/register' ? styles.activeLink : styles.link} href={'/register'}>Signup</Link></li>
                         </ul>}
-                        {data && <li className="relative"><button className={styles.link} onClick={() => signOut({ redirect: false })}>Log out</button></li>}
+                        {data && <li className="relative"><button className={styles.link} onClick={() => signOut({ redirect: true })}>Log out</button></li>}
                     </ul>
                 </nav>
             </div>

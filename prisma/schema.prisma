@@ -12,29 +12,33 @@ datasource db {
 }
 
 model User {
-  id              Int              @id @default(autoincrement())
-  email           String           @unique
+  id              Int             @id @default(autoincrement())
+  email           String          @unique
   password        String
   name            String
-  favouriteMovies FavoriteMovies[]
+  favouriteMovies FavoriteMovie[]
 }
 
-model FavoriteMovies {
-  id                Int     @id
-  adult             Boolean
-  backdrop_path     String
-  title             String
-  original_language String
-  original_title    String
-  overview          String
-  poster_path       String
-  media_type        String
-  genre_ids         Int[]
-  popularity        Int
-  release_date      String
-  video             Boolean
-  vote_average      Int
-  vote_count        Int
-  user              User    @relation(fields: [userId], references: [id])
-  userId            Int
+model FavoriteMovie {
+  id            Int      @id @default(autoincrement())
+  movieId       Int
+  backdrop_path String
+  title         String
+  overview      String
+  poster_path   String
+  genres        String[]
+  release_date  String
+  vote_average  Int
+  runtime       Int
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
+  videos        Video[]
+}
+
+model Video {
+  id             Int           @id @default(autoincrement())
+  key            String
+  type           String
+  movieId        Int
+  favouriteMovie FavoriteMovie @relation(fields: [movieId], references: [id])
 }
