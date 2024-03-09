@@ -8,7 +8,7 @@ export function SubmitButton({ title }: { title: string }) {
     return (<button>{pending ? 'pending' : title}</button>);
 }
 
-export function AddToFavorite({ movie, videos, userId }: { movie: MovieDetailed, videos: Video[], userId?: string }) {
+export function AddToFavorite({ movie, userId }: { movie: MovieDetailed, userId?: string }) {
     const { id, title, overview, poster_path, genres: genresArr, release_date, vote_average, runtime, backdrop_path } = movie
     const genres = genresArr.map(genre => genre.name)
     const favoriteMovie = { movieId: id, title, overview, poster_path, genres, release_date, vote_average, runtime, backdrop_path }
