@@ -12,7 +12,7 @@ function TVCard({ tv }: { tv: TVShow }) {
 
     return (
         <li id={`${tv.id}`} className="rounded-2xl overflow-hidden shadow-md relative hover:scale-[1.02] transition-transform duration-250 cursor-pointer active:scale-[0.97]" onClick={() => router.push(`/tv/${tv.id}`)}>
-            <Image src={src} width={500} height={750} alt={tv.name} onError={() => setSrc(defaultPoster)} />
+            <Image className="h-full" src={src} width={500} height={750} alt={tv.name} onError={() => setSrc(defaultPoster)} />
             <div className="bg-gradient-black absolute h-[50%] w-full bottom-0 px-4 pb-4 flex flex-col-reverse">
                 <p className="text-sm">{tv.first_air_date.slice(0, 4)}</p>
                 <p className="text-md font-bold mb-1">{tv.name}</p>

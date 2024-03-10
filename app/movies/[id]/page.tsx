@@ -11,15 +11,16 @@ import { getMovieById } from "../../lib/getMovieById";
 import Reviews from "../../UI/components/Reviews/Reviews";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
-import { getFavouriteMovies } from "@/app/lib/getFavoriteMovies";
+import { getFavouriteMovieById } from "@/app/lib/getFavoriteMovieById";
 
 
 
 async function Page({ params }: { params: { id: string } }) {
     const [movie, videos, session] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id), getServerSession(authOptions)])
-    let favouriteMovies
+    let isFavouriteMovie = false
     if (session) {
-        favouriteMovies = await getFavouriteMovies(Number(session.user.id))
+        const favouriteMovie = await getFavouriteMovieById(Number(session.user.id), Number(params.id))
+        if (favouriteMovie.length > 0) isFavouriteMovie = true
     }
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
@@ -54,7 +55,7 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            {session && <AddToFavorite movie={movie} userId={session?.user.id} />}
+                            {session && !isFavouriteMovie && <AddToFavorite movie={movie} userId={session?.user.id} />}
                         </div>
                     </div>
                 </div>

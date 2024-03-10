@@ -28,7 +28,7 @@ async function Page({ params }: { params: { id: string } }) {
         <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
             <div className="max-w-7xl py-12 px-3 mx-auto">
                 <div className="flex justify-between gap-12">
-                    <Poster image={tv.poster_path} title={tv.name} videos={videos} />
+                    <Poster image={tv.poster_path} title={tv.name} videos={videos.results} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                         <div>
                             <h1 className="text-7xl text-neutral-200 font-bold text-right block text-ellipsis">{tv.name}</h1>
