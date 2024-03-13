@@ -20,25 +20,12 @@ model User {
 }
 
 model FavoriteMovie {
-  id            Int      @id @default(autoincrement())
-  movieId       Int
-  backdrop_path String
-  title         String
-  overview      String
-  poster_path   String
-  genres        String[]
-  release_date  String
-  vote_average  Int
-  runtime       Int
-  userId        Int
-  user          User     @relation(fields: [userId], references: [id])
-  videos        Video[]
-}
-
-model Video {
-  id             Int           @id @default(autoincrement())
-  key            String
-  type           String
-  movieId        Int
-  favouriteMovie FavoriteMovie @relation(fields: [movieId], references: [id])
+  id           Int    @id @default(autoincrement())
+  movieId      Int
+  title        String
+  poster_path  String
+  release_date String
+  vote_average Float
+  userId       Int
+  user         User   @relation(fields: [userId], references: [id])
 }

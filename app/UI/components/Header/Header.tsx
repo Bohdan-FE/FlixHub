@@ -18,12 +18,18 @@ function Header() {
                     <ul className="flex gap-8">
                         <li className="relative"><Link className={pathname === '/' || pathname.includes('/movies') ? styles.activeLink : styles.link} href={'/'}>Movies</Link></li>
                         <li className="relative"><Link className={pathname.includes('/tv') ? styles.activeLink : styles.link} href={'/tv'}>TV shows</Link></li>
-                        {!data && <ul className="flex gap-2">
-                            <li className="relative"><Link className={pathname === '/login' ? styles.activeLink : styles.link} href={'/login'}>Login</Link></li>
-                            <span className="block w-[1px] h-full bg-neutral-400"></span>
-                            <li className="relative"><Link className={pathname === '/register' ? styles.activeLink : styles.link} href={'/register'}>Signup</Link></li>
-                        </ul>}
-                        {data && <li className="relative"><button className={styles.link} onClick={() => signOut({ redirect: true })}>Log out</button></li>}
+                        {!data && <>
+                            <ul className="flex gap-2">
+                                <li className="relative"><Link className={pathname === '/login' ? styles.activeLink : styles.link} href={'/login'}>Login</Link></li>
+                                <span className="block w-[1px] h-full bg-neutral-400"></span>
+                                <li className="relative"><Link className={pathname === '/register' ? styles.activeLink : styles.link} href={'/register'}>Signup</Link></li>
+                            </ul>
+                        </>}
+                        {data && <>
+                            <li className="relative"><Link className={pathname.includes('/favorite') ? styles.activeLink : styles.link} href={'/favorite'}>Favorite</Link></li>
+                            <li className="relative"><button className={styles.link} onClick={() => signOut({ redirect: true })}>Log out</button></li>
+                        </>
+                        }
                     </ul>
                 </nav>
             </div>

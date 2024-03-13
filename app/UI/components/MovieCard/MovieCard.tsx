@@ -6,7 +6,7 @@ import { BsFillStarFill } from "react-icons/bs";
 
 
 
-function MovieCard({ movie }: { movie: Movie }) {
+function MovieCard({ movie }: { movie: Movie | FavoriteMovie }) {
     const [isImg, setIsImg] = useState(true)
     const router = useRouter()
     if (!isImg) return
