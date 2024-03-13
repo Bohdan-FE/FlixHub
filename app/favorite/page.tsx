@@ -1,4 +1,3 @@
-import { getSession } from "next-auth/react";
 import { getFavouriteMovies } from "../lib/getFavoriteMovies";
 import MovieCard from "../UI/components/MovieCard/MovieCard";
 import { getServerSession } from "next-auth";
