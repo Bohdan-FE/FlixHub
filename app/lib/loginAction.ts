@@ -1,7 +1,5 @@
 import { z } from 'zod'
 import { signIn } from 'next-auth/react';
-import { prisma } from './prisma';
-import { compare } from 'bcrypt';
 
 
 const FormSchema = z.object({
