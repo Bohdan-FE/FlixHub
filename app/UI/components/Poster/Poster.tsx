@@ -1,15 +1,17 @@
 'use client'
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import { clsx } from "clsx";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosArrowForward } from "react-icons/io";
+import defaultPoster from '../../../../public/default_poster.jpg'
 
 
 function Poster({ image, title, videos }: { image: string | null, title: string, videos: Video[] }) {
     const [isActive, setIsActive] = useState<Boolean>(false)
     const [isPlay, setIsPlay] = useState<Boolean>(true)
+    const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${image}`)
     const trailerKey = videos.filter(video => video.type === 'Trailer')[0]?.key
     const teaserKey = videos.filter(video => video.type === 'Teaser')[0]?.key
     const youtubeKey = trailerKey?.length !== 0 ? trailerKey : teaserKey
@@ -28,7 +30,7 @@ function Poster({ image, title, videos }: { image: string | null, title: string,
         <div className="flex items-center shrink-0 rounded-xl">
             <div className={clsx('z-20 relative transform-style-3d perspective-1000 transition-all w-[376px] h-[564px] duration-500 rounded-xl', { 'rotate-90 scale-150 translate-x-[75%]': isActive })}>
                 <div className={clsx("backface-hidden transition-all absolute left-0 top-0 w-full h-full rounded-xl overflow-hidden duration-500 shadow-filmCard", { 'rotate-y-[540deg]': isActive })} >
-                    <Image className="rounded-xl blok w-[376px] h-[564px]" src={`https://image.tmdb.org/t/p/w500${image}`} width={376} height={564} alt={title} />
+                    <Image className="rounded-xl blok w-[376px] h-[564px]" src={src} width={376} height={564} alt={title} onError={e => setSrc(defaultPoster)} />
                     {youtubeKey && <div className="absolute top-6 right-0 bg-gradient-watch rounded-l-2xl">{youtubeKey?.length !== 0 && <button className="flex items-center italic animate-watch" onClick={onClickHandler}>WATCH TRAILER<IoIosArrowForward className="w-10 h-10" /><IoIosArrowForward className="w-10 h-10 translate-x-[-25px]" /></button>}</div>}
                 </div>
                 <div className={clsx("backface-hidden transition-all absolute left-0 top-0 w-full h-full rotate-y-180 duration-500 shadow-filmCard rounded-xl", { 'rotate-y-[720deg]': isActive })}>

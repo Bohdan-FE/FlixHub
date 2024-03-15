@@ -12,9 +12,9 @@ export const addFavouriteMovie = async (
     const schema = z.object({
         movieId: z.number().min(1),
         title: z.string().min(1),
-        poster_path: z.string().min(1),
+        poster_path: z.string(),
         release_date: z.string().min(1),
-        vote_average: z.number().min(1),
+        vote_average: z.number(),
         userId: z.number().min(1),
     });
     
