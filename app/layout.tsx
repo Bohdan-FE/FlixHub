@@ -23,10 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <Provider>
         <body className={inter.className}>
-          <main>
-            <Header />
-            <div className='relative'>{children}</div>
-          </main>
+          <Header />
+          <main className='relative'>{children}</main>
         </body>
       </Provider>
     </html>

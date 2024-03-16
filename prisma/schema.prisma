@@ -17,6 +17,7 @@ model User {
   password        String
   name            String
   favouriteMovies FavoriteMovie[]
+  favouriteTVs    FavoriteTVs[]
 }
 
 model FavoriteMovie {
@@ -28,4 +29,15 @@ model FavoriteMovie {
   vote_average Float
   userId       Int
   user         User   @relation(fields: [userId], references: [id])
+}
+
+model FavoriteTVs {
+  id             Int    @id @default(autoincrement())
+  tvId           Int
+  name           String
+  poster_path    String
+  first_air_date String
+  vote_average   Float
+  userId         Int
+  user           User   @relation(fields: [userId], references: [id])
 }

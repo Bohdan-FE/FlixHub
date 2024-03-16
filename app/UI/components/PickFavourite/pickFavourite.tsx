@@ -1,14 +1,13 @@
 'use client'
+import { FavoriteTVs } from "@prisma/client";
+import clsx from "clsx";
+import { Suspense, useState } from "react";
+import { Loading } from "../Loading/Loading";
+import MovieCard from "../MovieCard/MovieCard";
+import TVCard from "../TVCard/TVcard";
 
-import { Suspense, useState } from "react"
-import ActorMovies from "../ActorMovies/ActorMovies"
-import ActorTV from "../ActorTV/ActorTV"
-import clsx from "clsx"
-import { Loading } from "../Loading/Loading"
-
-export const PickActorsMovies = ({ movies, tvs }: { movies: MovieCredits, tvs: TVShowCredits }) => {
+export default function PickFavourite({ favouriteMovies, favouriteTVs }: { favouriteMovies: FavoriteMovie[] | [], favouriteTVs: FavoriteTVs[] | [] }) {
     const [isMovies, setIsMovies] = useState<Boolean>(true)
-
     return (
         <div>
             <div className="mx-auto w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
@@ -21,11 +20,11 @@ export const PickActorsMovies = ({ movies, tvs }: { movies: MovieCredits, tvs: T
             </div>
             {isMovies &&
                 <Suspense key={1} fallback={<Loading />}>
-                    <ActorMovies movies={movies} />
+                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteMovies.map(movie => <MovieCard key={movie.id} movie={movie} />)}</ul>
                 </Suspense>}
             {!isMovies &&
                 <Suspense key={2} fallback={<Loading />}>
-                    <ActorTV tvs={tvs} />
+                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteTVs.map(tv => <TVCard key={tv.id} tv={tv} />)}</ul>
                 </Suspense>}
         </div>
     )

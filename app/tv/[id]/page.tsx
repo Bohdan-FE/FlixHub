@@ -1,19 +1,26 @@
 import Poster from "@/app/UI/components/Poster/Poster";
-import Reviews from "@/app/UI/components/Reviews/Reviews";
 import SliderPart from "@/app/UI/components/SliderPart/SliderPart";
 import StarRating from "@/app/UI/components/StarRating/StarRating";
 import TVReviews from "@/app/UI/components/TVReviews/TVReviews";
-import { AddToFavorite } from "@/app/UI/components/buttons";
+import { AddToFavoriteTV, RemoveFromFavoriteTV } from "@/app/UI/components/buttons";
+import { authOptions } from "@/app/lib/auth";
 import { convertToHoursAndMinutes } from "@/app/lib/convertToHoursAndMinutes";
+import { getFavouriteTVById } from "@/app/lib/getFavouriteTVById";
 import { getMovieVideos } from "@/app/lib/getMovieVideos";
 import { getTVById } from "@/app/lib/getTVById";
 import { getTVVideos } from "@/app/lib/getTVVideos";
+import { getServerSession } from "next-auth";
 
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
 
 async function Page({ params }: { params: { id: string } }) {
-    const [tv, videos] = await Promise.all([getTVById(params.id), getTVVideos(params.id)])
+    const [tv, videos, session] = await Promise.all([getTVById(params.id), getTVVideos(params.id), getServerSession(authOptions)])
+    let isFavouriteTV
+    if (session) {
+        const favouriteTV = await getFavouriteTVById(Number(session.user.id), Number(params.id))
+        if (favouriteTV.length > 0) isFavouriteTV = true
+    }
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
                         linear-gradient(90deg, rgba(0,0,0,0.8744747899159664) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8744747899159664) 100%),
@@ -47,7 +54,8 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            {/* <AddToFavorite /> */}
+                            {session && !isFavouriteTV && <AddToFavoriteTV tv={tv} userId={session?.user.id} />}
+                            {session && isFavouriteTV && <RemoveFromFavoriteTV tv={tv} userId={Number(session?.user.id)} />}
                         </div>
                     </div>
                 </div>

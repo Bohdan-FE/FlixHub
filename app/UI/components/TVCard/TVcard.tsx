@@ -4,9 +4,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BsFillStarFill } from "react-icons/bs";
 import defaultPoster from '../../../../public/default_poster.jpg'
+import { FavoriteTVs } from "@prisma/client";
 
 
-function TVCard({ tv }: { tv: TVShow }) {
+function TVCard({ tv }: { tv: TVShow | FavoriteTVs }) {
     const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${tv.poster_path}`)
     const router = useRouter()
 

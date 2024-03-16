@@ -3,7 +3,7 @@ import StarRating from "../../UI/components/StarRating/StarRating";
 import { convertToHoursAndMinutes } from "../../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
-import { AddToFavorite, RemoveFromFavorite } from "../../UI/components/buttons";
+import { AddToFavoriteMovie, RemoveFromFavoriteMovie } from "../../UI/components/buttons";
 import Poster from "../../UI/components/Poster/Poster";
 import SliderPart from "../../UI/components/SliderPart/SliderPart";
 import { getMovieVideos } from "../../lib/getMovieVideos";
@@ -12,6 +12,7 @@ import Reviews from "../../UI/components/Reviews/Reviews";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getFavouriteMovieById } from "@/app/lib/getFavoriteMovieById";
+import Link from "next/link";
 
 
 
@@ -41,7 +42,7 @@ async function Page({ params }: { params: { id: string } }) {
                         <div>
                             <h1 className="text-7xl text-neutral-200 font-bold text-right block text-ellipsis">{movie.title}</h1>
                             <StarRating rating={movie.vote_average} />
-                            <ul className="flex gap-2 justify-end text-lg mb-5 text-neutral-300">{movie.genres.map(genre => <li className="after:content-['|'] last:after:content-[''] text-neutral-400 hover:text-neutral-300 cursor-pointer transition-colors hover:after:text-neutral-400" key={genre.id}>{genre.name + ' '}</li>)}</ul>
+                            <ul className="flex gap-2 justify-end text-lg mb-5 text-neutral-300">{movie.genres.map(genre => <Link href={`/?genre=${genre.id}`} className="after:content-['|'] last:after:content-[''] text-neutral-400 hover:text-neutral-300 cursor-pointer transition-colors hover:after:text-neutral-400" key={genre.id}>{genre.name + ' '}</Link>)}</ul>
                             <div className="flex items-center gap-2 text-xl justify-end mb-4">
                                 <IoMdTime className="w-8 h-8" />
                                 <p className="font-semibold">{convertToHoursAndMinutes(movie.runtime)}</p>
@@ -55,8 +56,8 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            {session && !isFavouriteMovie && <AddToFavorite movie={movie} userId={session.user.id} />}
-                            {session && isFavouriteMovie && <RemoveFromFavorite movie={movie} userId={Number(session.user.id)} />}
+                            {session && !isFavouriteMovie && <AddToFavoriteMovie movie={movie} userId={session.user.id} />}
+                            {session && isFavouriteMovie && <RemoveFromFavoriteMovie movie={movie} userId={Number(session.user.id)} />}
                         </div>
                     </div>
                 </div>

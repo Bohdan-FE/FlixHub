@@ -1,11 +1,10 @@
-import MovieCard from "../MovieCard/MovieCard";
-import { getActorTV } from "@/app/lib/getActorTV";
+'use client'
 import TVCard from "../TVCard/TVcard";
 
-async function ActorTV({ id }: { id: string }) {
-    const data = await getActorTV(id)
+async function ActorTV({ tvs }: { tvs: TVShowCredits }) {
+
     return (
-        <ul className="grid grid-cols-5 gap-x-12 gap-y-12 mb-8">{data.cast.map(movie => <TVCard key={movie.id} tv={movie} />)}</ul>
+        <ul className="grid grid-cols-5 gap-x-12 gap-y-12 mb-8">{tvs.cast.map(tv => <TVCard key={tv.id} tv={tv} />)}</ul>
     );
 }
 

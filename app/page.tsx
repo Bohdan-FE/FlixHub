@@ -2,8 +2,9 @@ import MovieCard from "./UI/components/MovieCard/MovieCard"
 import Pagination from "./UI/components/Pagination/Pagination"
 import { getMovies } from "./lib/getMovies"
 
-export default async function Home({ searchParams }: { searchParams: { page: string } }) {
-  const movies: MoviesData = await getMovies(searchParams.page)
+export default async function Home({ searchParams }: { searchParams: { page: string, genre: string } }) {
+  const movies: MoviesData = await getMovies(searchParams.page, searchParams.genre)
+  console.log(searchParams)
   if (Number(movies.total_pages) > 500) movies.total_pages = '500'
 
 

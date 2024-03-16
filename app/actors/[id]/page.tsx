@@ -1,10 +1,13 @@
 import { PickActorsMovies } from "@/app/UI/components/PickActorsMovies/PickActorsMovies";
 import { getActorData } from "@/app/lib/getActorData";
+import { getActorMovies } from "@/app/lib/getActorMovies";
+import { getActorTV } from "@/app/lib/getActorTV";
 import Image from "next/image";
 
 
 async function Page({ params }: { params: { id: string } }) {
-    const actorInfo = await getActorData(params.id)
+    const [actorInfo, movies, tvs] = await Promise.all([getActorData(params.id), getActorMovies(params.id), getActorTV(params.id)])
+
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -18,7 +21,7 @@ async function Page({ params }: { params: { id: string } }) {
                     <p className="text-neutral-400">{actorInfo.biography}</p>
                 </div>
             </div>
-            <PickActorsMovies id={params.id} />
+            <PickActorsMovies movies={movies} tvs={tvs} />
         </div>
     );
 }

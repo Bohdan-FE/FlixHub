@@ -1,6 +1,8 @@
 'use client'
 import { addFavouriteMovie } from "@/app/lib/addFavoriteMovie";
+import { addFavouriteTV } from "@/app/lib/addFavoriteTV";
 import { removeFavouriteMovie } from "@/app/lib/removeFavoriteMovie";
+import { removeFavouriteTV } from "@/app/lib/removeFromFavoriteTV";
 import { useFormState, useFormStatus } from "react-dom";
 
 export function SubmitButton({ title, className }: { title: string, className: string }) {
@@ -8,7 +10,7 @@ export function SubmitButton({ title, className }: { title: string, className: s
     return (<button className={className} aria-disabled={pending}>{pending ? 'pending' : title}</button>);
 }
 
-export function AddToFavorite({ movie, userId }: { movie: MovieDetailed, userId: string }) {
+export function AddToFavoriteMovie({ movie, userId }: { movie: MovieDetailed, userId: string }) {
     const [state, formAction] = useFormState(addFavouriteMovie, { message: '' });
     const { id, title, poster_path, release_date, vote_average } = movie
 
@@ -25,8 +27,25 @@ export function AddToFavorite({ movie, userId }: { movie: MovieDetailed, userId:
     )
 }
 
+export function AddToFavoriteTV({ tv, userId }: { tv: TVShowDetails, userId: string }) {
+    const [state, formAction] = useFormState(addFavouriteTV, { message: '' });
+    const { id, name, poster_path, first_air_date, vote_average } = tv
 
-export function RemoveFromFavorite({ movie, userId }: { movie: MovieDetailed, userId: number }) {
+    return (
+        <form className="max-w-[280px] w-full" action={formAction}>
+            <input type="hidden" name="tvId" value={id} />
+            <input type="hidden" name="name" value={name} />
+            <input type="hidden" name="poster_path" value={poster_path || ''} />
+            <input type="hidden" name="first_air_date" value={first_air_date} />
+            <input type="hidden" name="vote_average" value={vote_average} />
+            <input type="hidden" name="userId" value={userId} />
+            <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />
+        </form>
+    )
+}
+
+
+export function RemoveFromFavoriteMovie({ movie, userId }: { movie: MovieDetailed, userId: number }) {
     const [state, formAction] = useFormState(removeFavouriteMovie, { message: '' });
     const { id: movieId } = movie
 
@@ -34,6 +53,19 @@ export function RemoveFromFavorite({ movie, userId }: { movie: MovieDetailed, us
         <form className="max-w-[280px] w-full" action={formAction}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="movieId" value={movieId} />
+            <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />
+        </form>
+    )
+}
+
+export function RemoveFromFavoriteTV({ tv, userId }: { tv: TVShowDetails, userId: number }) {
+    const [state, formAction] = useFormState(removeFavouriteTV, { message: '' });
+    const { id: tvId } = tv
+
+    return (
+        <form className="max-w-[280px] w-full" action={formAction}>
+            <input type="hidden" name="userId" value={userId} />
+            <input type="hidden" name="tvId" value={tvId} />
             <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />
         </form>
     )
