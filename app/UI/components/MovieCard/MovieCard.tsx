@@ -7,9 +7,9 @@ import defaultPoster from '../../../../public/default_poster.jpg'
 
 
 
-function MovieCard({ movie }: { movie: Movie | FavoriteMovie }) {
+function MovieCard({ movie, favouriteMovies }: { movie: Movie | FavoriteMovie, favouriteMovies: FavoriteMovie[] }) {
     const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${movie.poster_path}`)
-
+    const isFavourite = favouriteMovies.find(item => item.movieId === movie.id)
     const router = useRouter()
 
     return (
@@ -19,6 +19,7 @@ function MovieCard({ movie }: { movie: Movie | FavoriteMovie }) {
                 <p className="text-sm">{movie.release_date.slice(0, 4)}</p>
                 <p className="text-md font-bold mb-1">{movie.title}</p>
             </div>
+            {isFavourite && <button className="absolute top-3 left-3">favourite</button>}
             <div className="absolute top-3 right-3 ml-auto flex items-center gap-1 py-1 px-2 rounded-xl bg-[rgba(46,45,45,0.7)]">
                 <BsFillStarFill className="fill-yellow-500 block" /><p>{movie.vote_average.toFixed(1)}</p>
             </div>
