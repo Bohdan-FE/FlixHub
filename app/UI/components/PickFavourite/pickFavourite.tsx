@@ -6,7 +6,7 @@ import { Loading } from "../Loading/Loading";
 import MovieCard from "../MovieCard/MovieCard";
 import TVCard from "../TVCard/TVcard";
 
-export default function PickFavourite({ favouriteMovies, favouriteTVs }: { favouriteMovies: FavoriteMovie[] | [], favouriteTVs: FavoriteTVs[] | [] }) {
+export default function PickFavourite({ favouriteMovies, favouriteTVs, userId }: { favouriteMovies: FavoriteMovie[] | [], favouriteTVs: FavoriteTVs[] | [], userId?: number }) {
     const [isMovies, setIsMovies] = useState<Boolean>(true)
     return (
         <div>
@@ -20,7 +20,7 @@ export default function PickFavourite({ favouriteMovies, favouriteTVs }: { favou
             </div>
             {isMovies &&
                 <Suspense key={1} fallback={<Loading />}>
-                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteMovies.map(movie => <MovieCard favouriteMovies={favouriteMovies} key={movie.id} movie={movie} />)}</ul>
+                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteMovies.map(movie => <MovieCard favouriteMovies={favouriteMovies} key={movie.id} movie={movie} userId={userId} />)}</ul>
                 </Suspense>}
             {!isMovies &&
                 <Suspense key={2} fallback={<Loading />}>

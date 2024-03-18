@@ -21,7 +21,7 @@ export const removeFavouriteMovie = async (
     const {movieId, userId} =data
     try {
         await prisma.favoriteMovie.deleteMany({where: {movieId, userId}})
-        revalidatePath(`/movies/${movieId}`)
+        revalidatePath(`/favorite`)
         return {message: 'removed'}
     } catch (error) {
         console.log(error)

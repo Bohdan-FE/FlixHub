@@ -9,6 +9,7 @@ export const addFavouriteMovie = async (
   },
   formData: FormData,
 ) => {
+    
     const schema = z.object({
         movieId: z.number().min(1),
         title: z.string().min(1),

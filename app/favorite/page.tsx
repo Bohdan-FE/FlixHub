@@ -14,7 +14,7 @@ export default async function Page() {
     return (
 
         <div className="max-w-7xl mx-auto p-4">
-            <PickFavourite favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} />
+            <PickFavourite favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} userId={Number(session?.user.id)} />
         </div>
 
     )

@@ -30,7 +30,7 @@ async function Page({ params }: { params: { id: string } }) {
                     <p className="text-neutral-400">{actorInfo.biography}</p>
                 </div>
             </div>
-            <PickActorsMovies movies={movies} tvs={tvs} favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} />
+            <PickActorsMovies movies={movies} tvs={tvs} favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} userId={Number(session?.user.id)} />
         </div>
     );
 }
