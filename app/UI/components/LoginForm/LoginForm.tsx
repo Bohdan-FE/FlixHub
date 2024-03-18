@@ -27,7 +27,7 @@ function LoginForm() {
         if (formState.message === 'loged in') {
             router.push('/')
         }
-    }, [formState])
+    }, [formState, router])
     return (
         <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch}>
             <h3 className='text-3xl text-center text-neutral-300 border-b border-neutral-300 pb-3 mb-5'>SIGN IN</h3>

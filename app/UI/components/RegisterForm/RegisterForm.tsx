@@ -29,7 +29,7 @@ function RegisterForm() {
         if (formState.message === 'User created') {
             router.push('/login')
         }
-    }, [formState])
+    }, [formState, router])
 
     return (
         <form className='flex flex-col px-6 py-14 max-w-md mx-auto bg-neutral-800' action={dispatch}>

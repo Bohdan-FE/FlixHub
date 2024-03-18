@@ -22,7 +22,7 @@ function SliderPart({ id, type }: { id: string, type: 'movie' | 'tv' }) {
             }
         }
         getSliderData()
-    }, [id, isRecomendation])
+    }, [id, isRecomendation, type])
 
     if (!recomandationData || !similarData) return
     if (recomandationData?.results.length === 0 && similarData?.results.length === 0) return
