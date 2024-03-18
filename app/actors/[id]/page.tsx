@@ -1,13 +1,22 @@
 import { PickActorsMovies } from "@/app/UI/components/PickActorsMovies/PickActorsMovies";
+import { authOptions } from "@/app/lib/auth";
 import { getActorData } from "@/app/lib/getActorData";
 import { getActorMovies } from "@/app/lib/getActorMovies";
 import { getActorTV } from "@/app/lib/getActorTV";
+import { getFavouriteMovies } from "@/app/lib/getFavoriteMovies";
+import { getFavouriteTVs } from "@/app/lib/getFavoriteTVs";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 
 
 async function Page({ params }: { params: { id: string } }) {
-    const [actorInfo, movies, tvs] = await Promise.all([getActorData(params.id), getActorMovies(params.id), getActorTV(params.id)])
-
+    const [actorInfo, movies, tvs, session] = await Promise.all([getActorData(params.id), getActorMovies(params.id), getActorTV(params.id), getServerSession(authOptions)])
+    let favouriteMovies: FavoriteMovie[] | [] = []
+    let favouriteTVs: FavoriteTV[] | [] = []
+    if (session) {
+        favouriteMovies = await getFavouriteMovies(Number(session.user.id))
+        favouriteTVs = await getFavouriteTVs(Number(session.user.id))
+    }
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -21,7 +30,7 @@ async function Page({ params }: { params: { id: string } }) {
                     <p className="text-neutral-400">{actorInfo.biography}</p>
                 </div>
             </div>
-            <PickActorsMovies movies={movies} tvs={tvs} />
+            <PickActorsMovies movies={movies} tvs={tvs} favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} />
         </div>
     );
 }

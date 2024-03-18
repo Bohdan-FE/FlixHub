@@ -7,8 +7,9 @@ import defaultPoster from '../../../../public/default_poster.jpg'
 import { FavoriteTVs } from "@prisma/client";
 
 
-function TVCard({ tv }: { tv: TVShow | FavoriteTVs }) {
+function TVCard({ tv, favouriteTVs }: { tv: TVShow | FavoriteTVs, favouriteTVs: FavoriteTV[] | [] }) {
     const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${tv.poster_path}`)
+    const isFavourite = favouriteTVs.find(item => item.tvId === tv.id)
     const router = useRouter()
 
     return (
@@ -18,6 +19,7 @@ function TVCard({ tv }: { tv: TVShow | FavoriteTVs }) {
                 <p className="text-sm">{tv.first_air_date.slice(0, 4)}</p>
                 <p className="text-md font-bold mb-1">{tv.name}</p>
             </div>
+            {isFavourite && <button className="absolute top-3 left-3">favourite</button>}
             <div className="absolute top-3 right-3 ml-auto flex items-center gap-1 py-1 px-2 rounded-xl bg-[rgba(46,45,45,0.7)]">
                 <BsFillStarFill className="fill-yellow-500 block" /><p>{tv.vote_average.toFixed(1)}</p>
             </div>

@@ -6,7 +6,7 @@ import ActorTV from "../ActorTV/ActorTV"
 import clsx from "clsx"
 import { Loading } from "../Loading/Loading"
 
-export const PickActorsMovies = ({ movies, tvs }: { movies: MovieCredits, tvs: TVShowCredits }) => {
+export const PickActorsMovies = ({ movies, tvs, favouriteMovies, favouriteTVs }: { movies: MovieCredits, tvs: TVShowCredits, favouriteMovies: FavoriteMovie[] | [], favouriteTVs: FavoriteTV[] | [] }) => {
     const [isMovies, setIsMovies] = useState<Boolean>(true)
 
     return (
@@ -21,11 +21,11 @@ export const PickActorsMovies = ({ movies, tvs }: { movies: MovieCredits, tvs: T
             </div>
             {isMovies &&
                 <Suspense key={1} fallback={<Loading />}>
-                    <ActorMovies movies={movies} />
+                    <ActorMovies movies={movies} favouriteMovies={favouriteMovies} />
                 </Suspense>}
             {!isMovies &&
                 <Suspense key={2} fallback={<Loading />}>
-                    <ActorTV tvs={tvs} />
+                    <ActorTV tvs={tvs} favouriteTVs={favouriteTVs} />
                 </Suspense>}
         </div>
     )

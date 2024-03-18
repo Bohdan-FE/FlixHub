@@ -24,7 +24,7 @@ export default function PickFavourite({ favouriteMovies, favouriteTVs }: { favou
                 </Suspense>}
             {!isMovies &&
                 <Suspense key={2} fallback={<Loading />}>
-                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteTVs.map(tv => <TVCard key={tv.id} tv={tv} />)}</ul>
+                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteTVs.map(tv => <TVCard favouriteTVs={favouriteTVs} key={tv.id} tv={tv} />)}</ul>
                 </Suspense>}
         </div>
     )

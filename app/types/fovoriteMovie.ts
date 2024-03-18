@@ -7,3 +7,13 @@ interface FavoriteMovie {
     vote_average: number;
     userId: number;
 }
+
+interface FavoriteTV {
+    id: number,
+    tvId: number,
+    name: string,
+    poster_path: string,
+    first_air_date: string;
+    vote_average: number;
+    userId: number;
+}
