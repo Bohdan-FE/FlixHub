@@ -54,8 +54,8 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
-                            {session && !isFavouriteTV && <AddToFavoriteTV tv={tv} userId={session?.user.id} />}
-                            {session && isFavouriteTV && <RemoveFromFavoriteTV tv={tv} userId={Number(session?.user.id)} />}
+                            {session && !isFavouriteTV && <AddToFavoriteTV tv={tv} userId={session?.user.id} type="btn" />}
+                            {session && isFavouriteTV && <RemoveFromFavoriteTV tv={tv} userId={Number(session?.user.id)} type="btn" />}
                         </div>
                     </div>
                 </div>

@@ -13,14 +13,14 @@ export function SubmitButton({ title, className }: { title: string, className: s
     return (<button className={className} aria-disabled={pending}>{pending ? 'pending' : title}</button>);
 }
 
-export function SubmitIconAdd({ className }: { className: string }) {
+export function SubmitIconAdd() {
     const { pending } = useFormStatus()
-    return (<button className={className} aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartOutline className="w-5 h-5 hover:scale-110" />}</button>);
+    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-slate-700 rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartOutline className="w-5 h-5 hover:scale-110" />}</button>);
 }
 
-export function SubmitIconRemove({ className }: { className: string }) {
+export function SubmitIconRemove() {
     const { pending } = useFormStatus()
-    return (<button className={className} aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartSharp className="w-5 h-5 hover:scale-110" />}</button>);
+    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-slate-700 rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartSharp className="w-5 h-5 hover:scale-110" />}</button>);
 }
 
 export function AddToFavoriteMovie({ movie, userId, type }: { movie: MovieDetailed | Movie | FavoriteMovie, userId?: number, type: 'btn' | 'icon' }) {
@@ -36,25 +36,25 @@ export function AddToFavoriteMovie({ movie, userId, type }: { movie: MovieDetail
             <input type="hidden" name="vote_average" value={vote_average} />
             <input type="hidden" name="userId" value={userId} />
             {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
-            {type === 'icon' && <SubmitIconAdd className="absolute top-4 left-4 cursor-pointer" />}
+            {type === 'icon' && <SubmitIconAdd />}
         </form>
     )
 }
 
-export function AddToFavoriteTV({ tv, userId }: { tv: TVShowDetails, userId: string }) {
+export function AddToFavoriteTV({ tv, userId, type }: { tv: TVShowDetails | TVShow | FavoriteTV, userId: string, type: 'btn' | 'icon' }) {
     const [state, formAction] = useFormState(addFavouriteTV, { message: '' });
     const { id, name, poster_path, first_air_date, vote_average } = tv
 
     return (
-        <form className="max-w-[280px] w-full" action={formAction}>
+        <form className="max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="tvId" value={id} />
             <input type="hidden" name="name" value={name} />
             <input type="hidden" name="poster_path" value={poster_path || ''} />
             <input type="hidden" name="first_air_date" value={first_air_date} />
             <input type="hidden" name="vote_average" value={vote_average} />
             <input type="hidden" name="userId" value={userId} />
-            <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />
-
+            {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'icon' && <SubmitIconAdd />}
         </form>
     )
 }
@@ -69,20 +69,21 @@ export function RemoveFromFavoriteMovie({ movie, userId, type }: { movie: MovieD
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="movieId" value={movieId} />
             {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
-            {type === 'icon' && <SubmitIconRemove className="absolute top-4 left-4 cursor-pointer" />}
+            {type === 'icon' && <SubmitIconRemove />}
         </form>
     )
 }
 
-export function RemoveFromFavoriteTV({ tv, userId }: { tv: TVShowDetails, userId: number }) {
+export function RemoveFromFavoriteTV({ tv, userId, type }: { tv: TVShowDetails | TVShow | FavoriteTV, userId: number, type: 'btn' | 'icon' }) {
     const [state, formAction] = useFormState(removeFavouriteTV, { message: '' });
     const { id: tvId } = tv
 
     return (
-        <form className="max-w-[280px] w-full" action={formAction}>
+        <form className="max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="tvId" value={tvId} />
-            <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />
+            {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'icon' && <SubmitIconRemove />}
         </form>
     )
 }
