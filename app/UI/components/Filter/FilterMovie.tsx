@@ -12,14 +12,11 @@ export default function FilterMovie() {
     const searchParams = useSearchParams()
     const router = useRouter();
 
-    const createQueryString = useCallback(
-        (name: string, value: string) => {
-            if (!name || !value) return ''
-            const params = `${name}=${value}`
-            return params
-        },
-        [searchParams]
-    )
+    const createQueryString = (name: string, value: string) => {
+        if (!name || !value) return ''
+        const params = `${name}=${value}`
+        return params
+    }
 
     const handlerSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
