@@ -10,9 +10,12 @@ export default async function Page() {
     const [movies, tvs] = await Promise.all([getFavouriteMovies(Number(session?.user.id)), getFavouriteTVs(Number(session?.user.id))])
     const favouriteMovies = movies?.map(item => ({ ...item, id: item.movieId }))
     const favouriteTVs = tvs?.map(item => ({ ...item, id: item.tvId }))
-    if (!favouriteMovies || !favouriteTVs) return
-    return (
 
+    if (favouriteMovies.length === 0 && favouriteTVs.length === 0) {
+        return <div className="max-w-7xl mx-auto p-4"><div className="flex items-center h-[70vh] justify-center"><p className='text-3xl text-neutral-400'>There aren't favorite movies/tvs yet</p></div></div>
+    }
+
+    return (
         <div className="max-w-7xl mx-auto p-4">
             <PickFavourite favouriteMovies={favouriteMovies} favouriteTVs={favouriteTVs} userId={session?.user.id} />
         </div>
