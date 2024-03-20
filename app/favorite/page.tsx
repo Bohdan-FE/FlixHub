@@ -1,5 +1,4 @@
 import { getFavouriteMovies } from "../lib/getFavoriteMovies";
-import MovieCard from "../UI/components/MovieCard/MovieCard";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
 import { getFavouriteTVs } from "../lib/getFavoriteTVs";
@@ -12,7 +11,7 @@ export default async function Page() {
     const favouriteTVs = tvs?.map(item => ({ ...item, id: item.tvId }))
 
     if (favouriteMovies.length === 0 && favouriteTVs.length === 0) {
-        return <div className="max-w-7xl mx-auto p-4"><div className="flex items-center h-[70vh] justify-center"><p className='text-3xl text-neutral-400'>There aren't favorite movies/tvs yet</p></div></div>
+        return <div className="max-w-7xl mx-auto p-4"><div className="flex items-center h-[70vh] justify-center"><p className='text-3xl text-neutral-400'>No favorite movies/tvs yet</p></div></div>
     }
 
     return (
