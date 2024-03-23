@@ -1,12 +1,12 @@
-import { genres } from "@/app/lib/genres";
-import { ChangeEvent, useState } from "react";
+import { genres as movieGenres, tvGenres } from "@/app/lib/genres";
+import { ChangeEvent } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineCheckBox } from "react-icons/md";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 
 
-function GenresInput({ setSelectedGenres, selectedGenres, isActive, setIsActive }: {
-    setSelectedGenres: React.Dispatch<React.SetStateAction<[] | Genre[]>>, selectedGenres: [] | Genre[], isActive: {
+function GenresInput({ setSelectedGenres, selectedGenres, isActive, setIsActive, type }: {
+    setSelectedGenres: React.Dispatch<React.SetStateAction<[] | Genre[]>>, type: string, selectedGenres: [] | Genre[], isActive: {
         sort: boolean;
         genres: boolean;
         year: boolean;
@@ -16,7 +16,7 @@ function GenresInput({ setSelectedGenres, selectedGenres, isActive, setIsActive 
         year: boolean;
     }>>
 }) {
-    // const [isActive, setIsActive] = useState(false)
+    const genres = type === 'movie' ? movieGenres : tvGenres
     const selectedName = (): string => {
         return selectedGenres.map(item => item.name).join(', ')
     }

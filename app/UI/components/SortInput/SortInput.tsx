@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 
-const sortTypes = [
+const sortTypesMovie = [
     { type: 'popularity.desc', name: 'Most popular' },
     { type: 'popularity.asc', name: 'Most unpopular' },
     { type: 'primary_release_date.desc', name: 'Newest' },
@@ -11,8 +10,17 @@ const sortTypes = [
     { type: 'vote_average.desc', name: 'Highest rating' }
 ]
 
-function SortInput({ setSelectedSort, selectedSort, isActive, setIsActive }: {
-    setSelectedSort: React.Dispatch<React.SetStateAction<string>>, selectedSort: string, isActive: {
+const sortTypesTV = [
+    { type: 'popularity.desc', name: 'Most popular' },
+    { type: 'popularity.asc', name: 'Most unpopular' },
+    { type: 'first_air_date.desc', name: 'Newest' },
+    { type: 'first_air_date.asc', name: 'Oldest' },
+    { type: 'vote_average.asc', name: 'Lowest rating' },
+    { type: 'vote_average.desc', name: 'Highest rating' }
+]
+
+function SortInput({ setSelectedSort, selectedSort, isActive, setIsActive, type }: {
+    setSelectedSort: React.Dispatch<React.SetStateAction<string>>, type: string, selectedSort: string, isActive: {
         sort: boolean;
         genres: boolean;
         year: boolean;
@@ -22,7 +30,7 @@ function SortInput({ setSelectedSort, selectedSort, isActive, setIsActive }: {
         year: boolean;
     }>>
 }) {
-
+    const sortTypes = type === 'movie' ? sortTypesMovie : sortTypesTV
     const selectedName = sortTypes.find(type => type.type === selectedSort)
 
     return (
