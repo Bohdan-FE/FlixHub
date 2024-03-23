@@ -38,7 +38,7 @@ export default function FilterMovie() {
         setSelectedYear('')
     }
     return (
-        <form className="flex gap-2 mb-8" onSubmit={handlerSubmit}>
+        <form className="flex gap-2 mb-8 select-none" onSubmit={handlerSubmit}>
             <SortInput selectedSort={selectedSort} setSelectedSort={setSelectedSort} isActive={isActive} setIsActive={setIsActive} />
             <GenresInput selectedGenres={selectedGenres} setSelectedGenres={setSelectedGenres} isActive={isActive} setIsActive={setIsActive} />
             <YearInput selectedYear={selectedYear} setSelectedYear={setSelectedYear} isActive={isActive} setIsActive={setIsActive} />
