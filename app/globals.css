@@ -37,6 +37,8 @@ select:-webkit-autofill:focus {
   color: white;
 }
 
+
+
 body {
   @apply scrollbar-thin scrollbar-thumb-neutral-500 scrollbar-thumb-rounded-full
 }

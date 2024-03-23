@@ -11,7 +11,7 @@ function Header() {
     const { data } = useSession()
 
     return (
-        <header className=" text-neutral-400 text-xl">
+        <header className="text-neutral-400 text-xl ">
             <div className="flex max-w-7xl mx-auto justify-between px-4 py-6">
                 <p>LOGO</p>
                 <nav>
