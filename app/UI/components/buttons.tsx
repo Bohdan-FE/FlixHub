@@ -15,12 +15,12 @@ export function SubmitButton({ title, className }: { title: string, className: s
 
 export function SubmitIconAdd() {
     const { pending } = useFormStatus()
-    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-slate-700 rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartOutline className="w-5 h-5 hover:scale-110" />}</button>);
+    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-[rgba(46,45,45,0.7)] rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartOutline className="w-5 h-5 hover:scale-110" />}</button>);
 }
 
 export function SubmitIconRemove() {
     const { pending } = useFormStatus()
-    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-slate-700 rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartSharp className="w-5 h-5 hover:scale-110" />}</button>);
+    return (<button className='absolute top-3 left-3 cursor-pointer p-1 bg-[rgba(46,45,45,0.7)] rounded-full' aria-disabled={pending}>{pending ? <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /> : <IoHeartSharp className="w-5 h-5 hover:scale-110" />}</button>);
 }
 
 export function AddToFavoriteMovie({ movie, userId, type }: { movie: MovieDetailed | Movie | FavoriteMovie, userId?: number, type: 'btn' | 'icon' }) {
