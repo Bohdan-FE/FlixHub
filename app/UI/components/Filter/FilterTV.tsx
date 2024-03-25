@@ -2,16 +2,20 @@
 
 import { useState } from "react"
 import SortInput from "../SortInput/SortInput"
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import GenresInput from "../GenresInput/GenresInput";
 import { YearInput } from "../YearInput/YearInput";
+import { tvGenres } from "@/app/lib/genres";
 
 
 export default function FilterTV() {
+    const params = useSearchParams()
+    const genreParams = params.get('genre')?.split(',')
+    const getGenresFromParams = tvGenres.filter(genre => genreParams?.includes(genre.id))
     const [isActive, setIsActive] = useState({ sort: false, genres: false, year: false })
-    const [selectedSort, setSelectedSort] = useState<string>('popularity.desc')
-    const [selectedGenres, setSelectedGenres] = useState<[] | Genre[]>([])
-    const [selectedYear, setSelectedYear] = useState<string>('')
+    const [selectedSort, setSelectedSort] = useState<string>(params.get('sortby') || 'popularity.desc')
+    const [selectedGenres, setSelectedGenres] = useState<[] | Genre[]>(getGenresFromParams)
+    const [selectedYear, setSelectedYear] = useState<string>(params.get('year') || '')
     const router = useRouter();
 
     const createQueryString = (name: string, value: string | [] | Genre[]) => {

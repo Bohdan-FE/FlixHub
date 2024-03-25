@@ -5,14 +5,21 @@ import SortInput from "../SortInput/SortInput"
 import { useRouter } from "next/navigation";
 import GenresInput from "../GenresInput/GenresInput";
 import { YearInput } from "../YearInput/YearInput";
+import { useSearchParams } from 'next/navigation'
+import { genres } from "@/app/lib/genres";
+
 
 
 export default function FilterMovie() {
-    const [isActive, setIsActive] = useState({ sort: false, genres: false, year: false })
-    const [selectedSort, setSelectedSort] = useState<string>('popularity.desc')
-    const [selectedGenres, setSelectedGenres] = useState<[] | Genre[]>([])
-    const [selectedYear, setSelectedYear] = useState<string>('')
     const router = useRouter();
+    const params = useSearchParams()
+    const genreParams = params.get('genre')?.split(',')
+    const getGenresFromParams = genres.filter(genre => genreParams?.includes(genre.id))
+    const [isActive, setIsActive] = useState({ sort: false, genres: false, year: false })
+    const [selectedSort, setSelectedSort] = useState<string>(params.get('sortby') || 'popularity.desc')
+    const [selectedGenres, setSelectedGenres] = useState<[] | Genre[]>(getGenresFromParams)
+    const [selectedYear, setSelectedYear] = useState<string>(params.get('year') || '')
+
 
     const createQueryString = (name: string, value: string | [] | Genre[]) => {
         if (!name || !value || value.length === 0) return ''
