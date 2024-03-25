@@ -3,17 +3,18 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.scss'
 import { signOut, useSession } from "next-auth/react";
+import SearchBar from "../SearchBar/SearchBar";
 
 
 
 function Header() {
     const pathname = usePathname()
     const { data } = useSession()
-
     return (
         <header className="text-neutral-400 text-xl ">
-            <div className="flex max-w-7xl mx-auto justify-between px-4 py-6">
+            <div className="flex max-w-7xl mx-auto justify-between px-4 py-6 items-center">
                 <p>LOGO</p>
+                <SearchBar />
                 <nav>
                     <ul className="flex gap-8">
                         <li className="relative"><Link className={pathname === '/' || pathname.includes('/movies') ? styles.activeLink : styles.link} href={'/'}>Movies</Link></li>
