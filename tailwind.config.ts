@@ -29,6 +29,9 @@ const config: Config = {
         watch: 'watch 1s ease-in-out infinite',
       }
     },
+     screens: {
+      'header': '1024px',
+    },
   },
   plugins: [
         require('tailwind-scrollbar')({ preferredStrategy: 'pseudoelements', nocompatible: true }),
