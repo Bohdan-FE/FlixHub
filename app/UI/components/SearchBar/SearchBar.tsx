@@ -68,22 +68,22 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="relative max-w-[450px] w-full min-w-[300px]">
-            <form className="flex gap-3 items-center" onSubmit={handlerSubmit}>
+        <div className="relative max-w-[450px] w-full min-w-[180px]">
+            <form className="flex gap-1 items-center" onSubmit={handlerSubmit}>
                 <div className="relative text-[16px] w-full">
                     <input className="w-full bg-transparent border-2 border-neutral-400 rounded-full outline-none focus:border-neutral-300 appearance-none px-3 py-1 transition-all" value={query} onBlur={() => setFocus(false)} onFocus={() => setFocus(true)} type="text" onChange={(e) => setQuery(e.target.value)} />
                     <button className="absolute right-3 top-1/2 translate-y-[-50%] group text-xl"><IoIosSearch className="group-hover:fill-neutral-200 transition-colors" /></button>
                 </div>
-                <div className=" text-[16px] flex gap-2">
+                <div className=" text-[16px] flex gap-0 flex-col">
                     <div className="flex items-center gap-1">
                         <label className="cursor-pointer" htmlFor="movies">{isMovieChecked ? <MdOutlineRadioButtonChecked /> : <MdRadioButtonUnchecked />}</label>
                         <input type="radio" name="search" id="movies" hidden checked={isMovieChecked} onChange={() => setIsMovieChecked(true)} />
-                        <label className="cursor-pointer" htmlFor="movies">Movie</label>
+                        <label className="cursor-pointer leading-5" htmlFor="movies">Movie</label>
                     </div>
                     <div className="flex items-center gap-1">
                         <label className="cursor-pointer" htmlFor="tvs">{!isMovieChecked ? <MdOutlineRadioButtonChecked /> : <MdRadioButtonUnchecked />}</label>
                         <input type="radio" name="search" id="tvs" checked={!isMovieChecked} hidden onChange={() => setIsMovieChecked(false)} />
-                        <label className="cursor-pointer" htmlFor="tvs" >TV</label>
+                        <label className="cursor-pointer leading-5" htmlFor="tvs" >TV</label>
                     </div>
                 </div>
             </form>
