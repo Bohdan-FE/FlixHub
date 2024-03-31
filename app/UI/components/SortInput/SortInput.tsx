@@ -34,7 +34,7 @@ function SortInput({ setSelectedSort, selectedSort, isActive, setIsActive, type 
     const selectedName = sortTypes.find(type => type.type === selectedSort)
 
     return (
-        <div className="w-[224px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-800 rounded-2xl">
+        <div className="filter:w-[224px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-800 rounded-2xl w-full">
             <div className="px-[18px] py-[14px] rounded-[14px] bg-selectBg flex items-center justify-between cursor-pointer" onClick={() => setIsActive(prev => ({ ...prev, sort: !prev.sort }))}>
                 <p>{selectedSort ? selectedName?.name : 'Most popular'}</p>
                 <IoIosArrowDown className={`${isActive.sort && 'rotate-180'}`} />

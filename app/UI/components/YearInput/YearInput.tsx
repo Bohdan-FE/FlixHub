@@ -16,7 +16,7 @@ export const YearInput = ({ setSelectedYear, selectedYear, isActive, setIsActive
 
     const years = getYears()
     return (
-        <div className="w-[148px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-800 rounded-2xl">
+        <div className="filter:w-[148px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-800 rounded-2xl w-full">
             <div className="px-[18px] py-[14px] rounded-[14px] bg-selectBg flex items-center justify-between cursor-pointer" onClick={() => setIsActive(prev => ({ ...prev, year: !prev.year }))}>
                 <p>{selectedYear ? selectedYear : 'All years'}</p>
                 <IoIosArrowDown className={`${isActive.year && 'rotate-180'}`} />

@@ -30,7 +30,8 @@ const config: Config = {
       }
     },
      screens: {
-      'header': '1024px',
+       'header': '1024px',
+       'filter': '646px'
     },
   },
   plugins: [
