@@ -10,7 +10,7 @@ export default function PickFavourite({ favouriteMovies, favouriteTVs, userId }:
     const [isMovies, setIsMovies] = useState<Boolean>(true)
     return (
         <div>
-            <div className="mx-auto w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
+            <div className="mx-auto w-72 cardlistmob:w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
                 <button className={clsx("w-1/2 p-3 text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all", {
                     'shadow-sliderBtm bg-neutral-600': isMovies
                 })} onClick={() => setIsMovies(true)}>Movies</button>
@@ -20,11 +20,11 @@ export default function PickFavourite({ favouriteMovies, favouriteTVs, userId }:
             </div>
             {isMovies &&
                 <Suspense key={1} fallback={<Loading />}>
-                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteMovies.map(movie => <MovieCard favouriteMovies={favouriteMovies} key={movie.id} movie={movie} userId={Number(userId)} />)}</ul>
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-5 cardlistmob:grid-cols-3 cardlistmob:gap-5 cardlisttab:grid-cols-4 cardlisttab:gap-x-7 cardlisttab:gap-y-8 header:grid-cols-5">{favouriteMovies.map(movie => <MovieCard favouriteMovies={favouriteMovies} key={movie.id} movie={movie} userId={Number(userId)} />)}</ul>
                 </Suspense>}
             {!isMovies &&
                 <Suspense key={2} fallback={<Loading />}>
-                    <ul className="grid grid-cols-5 gap-x-7 gap-y-8">{favouriteTVs.map(tv => <TVCard favouriteTVs={favouriteTVs} key={tv.id} tv={tv} userId={userId} />)}</ul>
+                    <ul className="grid grid-cols-2 gap-x-4 gap-y-5 cardlistmob:grid-cols-3 cardlistmob:gap-5 cardlisttab:grid-cols-4 cardlisttab:gap-x-7 cardlisttab:gap-y-8 header:grid-cols-5">{favouriteTVs.map(tv => <TVCard favouriteTVs={favouriteTVs} key={tv.id} tv={tv} userId={userId} />)}</ul>
                 </Suspense>}
         </div>
     )

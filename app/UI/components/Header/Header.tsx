@@ -28,10 +28,10 @@ function Header() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
     const closeNavhandler = () => {
         if (window.innerWidth > 1024) return
         setIsActive(false)
-
     }
     return (
         <header className="text-neutral-400 text-xl relative">
