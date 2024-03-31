@@ -3,7 +3,7 @@ import StarRating from "../../UI/components/StarRating/StarRating";
 import { convertToHoursAndMinutes } from "../../lib/convertToHoursAndMinutes";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
-import { AddToFavoriteMovie, RemoveFromFavoriteMovie } from "../../UI/components/buttons";
+import { AddToFavoriteMovie, OpenTrailer, RemoveFromFavoriteMovie } from "../../UI/components/buttons";
 import Poster from "../../UI/components/Poster/Poster";
 import SliderPart from "../../UI/components/SliderPart/SliderPart";
 import { getMovieVideos } from "../../lib/getMovieVideos";
@@ -35,14 +35,14 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (<>
         <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
-            <div className="max-w-7xl py-12 px-3 mx-auto">
-                <div className="flex justify-between gap-12">
+            <div className="max-w-7xl py-12 px-3 mx-auto bg-[rgba(46,45,45,0.3)] header:bg-transparent">
+                <div className="flex header:justify-between gap-12 justify-center ">
                     <Poster image={movie.poster_path} title={movie.title} videos={videos.results} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                         <div>
-                            <h1 className="text-7xl text-neutral-200 font-bold text-right block text-ellipsis">{movie.title}</h1>
+                            <h1 className="header:text-7xl text-5xl text-neutral-200 font-bold text-right block text-ellipsis">{movie.title}</h1>
                             <StarRating rating={movie.vote_average} />
-                            <ul className="flex gap-2 justify-end text-lg mb-5 text-neutral-300">{movie.genres.map(genre => <Link href={`/?genre=${genre.id}`} className="after:content-['|'] last:after:content-[''] text-neutral-400 hover:text-neutral-300 cursor-pointer transition-colors hover:after:text-neutral-400" key={genre.id}>{genre.name + ' '}</Link>)}</ul>
+                            <ul className="flex gap-2 justify-end text-lg mb-5 text-neutral-300 flex-wrap">{movie.genres.map(genre => <Link href={`/?genre=${genre.id}`} className="after:content-['|'] last:after:content-[''] text-neutral-300 hover:text-neutral-100 cursor-pointer transition-colors hover:after:text-neutral-300" key={genre.id}>{genre.name + ' '}</Link>)}</ul>
                             <div className="flex items-center gap-2 text-xl justify-end mb-4">
                                 <IoMdTime className="w-8 h-8" />
                                 <p className="font-semibold">{convertToHoursAndMinutes(movie.runtime)}</p>
@@ -56,12 +56,12 @@ async function Page({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                         <div className="flex justify-end">
+                            <OpenTrailer videos={videos.results} />
                             {session && !isFavouriteMovie && <AddToFavoriteMovie movie={movie} userId={Number(session?.user.id)} type="btn" />}
                             {session && isFavouriteMovie && <RemoveFromFavoriteMovie movie={movie} userId={Number(session.user.id)} type="btn" />}
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <SliderPart id={params.id} type="movie" />

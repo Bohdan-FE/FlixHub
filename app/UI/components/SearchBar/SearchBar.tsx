@@ -68,7 +68,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className="relative max-w-[450px] w-full min-w-[180px] header:mx-auto">
+        <div className="max-w-[450px] w-full min-w-[180px] header:mx-auto cardlisttab:relative">
             <form className="flex gap-2 items-center" onSubmit={handlerSubmit}>
                 <div className="relative text-[16px] w-full">
                     <input className="w-full bg-transparent border-2 border-neutral-400 rounded-full outline-none focus:border-neutral-300 appearance-none px-3 py-1 transition-all" value={query} onBlur={() => setFocus(false)} onFocus={() => setFocus(true)} type="text" onChange={(e) => setQuery(e.target.value)} />
@@ -87,7 +87,7 @@ export default function SearchBar() {
                     </div>
                 </div>
             </form>
-            {movies && <ul className="absolute top-[120%] w-full bg-neutral-800 z-[99] rounded-md p-2" onMouseLeave={() => handleMouseToggle(false)} onMouseEnter={() => handleMouseToggle(true)}>
+            {movies && movies?.results.length !== 0 && <ul className="absolute left-0 top-[100%] w-[100vw] bg-neutral-800 z-[99] rounded-md p-2 cardlisttab:top-[120%] cardlisttab:w-full" onMouseLeave={() => handleMouseToggle(false)} onMouseEnter={() => handleMouseToggle(true)}>
                 {isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchMovieCard key={movie.id} movie={movie} handlerOnClick={handlerOnClick} />)}
                 {!isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchTVCard key={movie.id} tv={movie} handlerOnClick={handlerOnClick} />)}
             </ul>}

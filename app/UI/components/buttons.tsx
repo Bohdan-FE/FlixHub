@@ -7,6 +7,9 @@ import { useFormState, useFormStatus } from "react-dom";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import clsx from "clsx";
+import VideoPortal from "./VideoPortal/VideoPortal";
+import { useState } from "react";
+import Portal from "./Portal/Portal";
 
 export function SubmitButton({ title, className }: { title: string, className: string }) {
     const { pending } = useFormStatus()
@@ -85,6 +88,26 @@ export function RemoveFromFavoriteTV({ tv, userId, type }: { tv: TVShowDetails |
             {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
             {type === 'icon' && <SubmitIconRemove />}
         </form>
+    )
+}
+
+
+export function OpenTrailer({ videos }: { videos: Video[] }) {
+    const [isActive, setIsActive] = useState<boolean>(false)
+    const trailerKey = videos.filter(video => video.type === 'Trailer')[0]?.key
+    const teaserKey = videos.filter(video => video.type === 'Teaser')[0]?.key || ''
+    const youtubeKey = trailerKey?.length !== 0 ? trailerKey : teaserKey
+    console.log(youtubeKey, 'key')
+    if (!youtubeKey) return
+    return (
+        <>
+            <button onClick={() => setIsActive(!isActive)}>Watch trailer</button>
+            <Portal>
+                {isActive &&
+                    <VideoPortal setIsActive={setIsActive} key={youtubeKey} />
+                }
+            </Portal>
+        </>
     )
 }
 
