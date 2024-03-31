@@ -31,7 +31,9 @@ const config: Config = {
     },
      screens: {
        'header': '1024px',
-       'filter': '646px'
+       'filter': '646px',
+       'cardlistmob': '438px',
+       'cardlisttab': '828px'
     },
   },
   plugins: [
