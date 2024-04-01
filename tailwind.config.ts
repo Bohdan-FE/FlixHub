@@ -33,7 +33,8 @@ const config: Config = {
        'header': '1024px',
        'filter': '646px',
        'cardlistmob': '438px',
-       'cardlisttab': '828px'
+       'cardlisttab': '828px',
+       'xl':'1280px'
     },
   },
   plugins: [

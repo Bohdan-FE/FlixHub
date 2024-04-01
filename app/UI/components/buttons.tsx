@@ -8,8 +8,8 @@ import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import clsx from "clsx";
 import VideoPortal from "./VideoPortal/VideoPortal";
-import { useState } from "react";
-import Portal from "./Portal/Portal";
+import { useLayoutEffect, useState } from "react";
+import { createPortal } from 'react-dom';
 
 export function SubmitButton({ title, className }: { title: string, className: string }) {
     const { pending } = useFormStatus()
@@ -31,7 +31,7 @@ export function AddToFavoriteMovie({ movie, userId, type }: { movie: MovieDetail
     const { id, title, poster_path, release_date, vote_average } = movie
     if (!userId) return
     return (
-        <form className={clsx({ 'max-w-[280px] w-full': type === 'btn' })} action={formAction} onClick={e => e.stopPropagation()}>
+        <form className={clsx({ 'basis-[calc((100%-12px)/2)]  max-w-[280px] w-full': type === 'btn' })} action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="movieId" value={id} />
             <input type="hidden" name="title" value={title} />
             <input type="hidden" name="poster_path" value={poster_path || ''} />
@@ -49,7 +49,7 @@ export function AddToFavoriteTV({ tv, userId, type }: { tv: TVShowDetails | TVSh
     const { id, name, poster_path, first_air_date, vote_average } = tv
 
     return (
-        <form className="max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
+        <form className="basis-[calc((100%-12px)/2)]  max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="tvId" value={id} />
             <input type="hidden" name="name" value={name} />
             <input type="hidden" name="poster_path" value={poster_path || ''} />
@@ -68,7 +68,7 @@ export function RemoveFromFavoriteMovie({ movie, userId, type }: { movie: MovieD
     const { id: movieId } = movie
 
     return (
-        <form className={clsx({ 'max-w-[280px] w-full': type === 'btn' })} action={formAction} onClick={e => e.stopPropagation()}>
+        <form className={clsx({ 'basis-[calc((100%-12px)/2)]  max-w-[280px] w-full': type === 'btn' })} action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="movieId" value={movieId} />
             {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
@@ -82,7 +82,7 @@ export function RemoveFromFavoriteTV({ tv, userId, type }: { tv: TVShowDetails |
     const { id: tvId } = tv
 
     return (
-        <form className="max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
+        <form className=" basis-[calc((100%-12px)/2)] max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="tvId" value={tvId} />
             {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
@@ -97,16 +97,29 @@ export function OpenTrailer({ videos }: { videos: Video[] }) {
     const trailerKey = videos.filter(video => video.type === 'Trailer')[0]?.key
     const teaserKey = videos.filter(video => video.type === 'Teaser')[0]?.key || ''
     const youtubeKey = trailerKey?.length !== 0 ? trailerKey : teaserKey
-    console.log(youtubeKey, 'key')
+
+    useLayoutEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 1024) setIsActive(false);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     if (!youtubeKey) return
     return (
         <>
-            <button onClick={() => setIsActive(!isActive)}>Watch trailer</button>
-            <Portal>
-                {isActive &&
-                    <VideoPortal setIsActive={setIsActive} key={youtubeKey} />
-                }
-            </Portal>
+            <button className=" basis-[calc((100%-12px)/2)] header:hidden max-w-[280px] cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" onClick={() => setIsActive(!isActive)}>Watch trailer</button>
+            {isActive && createPortal(
+                <VideoPortal setIsActive={setIsActive} youtubeKey={youtubeKey} />,
+                document.body
+            )}
         </>
     )
 }

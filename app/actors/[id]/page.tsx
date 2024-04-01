@@ -19,10 +19,10 @@ async function Page({ params }: { params: { id: string } }) {
     }
 
     return (
-        <div className="max-w-7xl mx-auto">
-            <div className="flex gap-8 mb-8">
-                <div className="shrink-0 w-[300px] h-[450px] rounded-2xl overflow-hidden">
-                    <Image className="w-full" src={`https://image.tmdb.org/t/p/w300${actorInfo.profile_path}`} alt={actorInfo.name} width={500} height={700} />
+        <div className="max-w-7xl mx-auto px-4 xl:px-0">
+            <div className="flex gap-6 mb-8 flex-col items-center filter:flex-row">
+                <div className="shrink-0 filter:w-[300px] filter:h-[450px] rounded-2xl overflow-hidden w-[226px]">
+                    <Image className="w-full object-cover" src={`https://image.tmdb.org/t/p/w300${actorInfo.profile_path}`} alt={actorInfo.name} width={500} height={700} />
                 </div>
                 <div>
                     <p className="text-3xl font-bold mb-2">{actorInfo.name}</p>

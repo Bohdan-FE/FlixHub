@@ -10,7 +10,7 @@ function ReviewCard({ review }: { review: ReviewItem }) {
     const [src, setSrc] = useState(`https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`)
 
     return (
-        <li className='mb-7 odd:bg-neutral-800 p-3 rounded-lg even:bg-neutral-700'>
+        <li className='mb-5 odd:bg-neutral-800 p-3 rounded-lg even:bg-neutral-700'>
 
             <div className='flex gap-5 items-center mb-3' >
                 <div className='rounded-full w-[80px] h-[80px] shrink-0 overflow-hidden'>

@@ -14,8 +14,8 @@ function CastCard({ castMember }: { castMember: CastMember }) {
                 <div className="rounded-2xl overflow-hidden mb-2">
                     <Image className="block object-cover w-full" src={src} width={500} height={700} alt={castMember.name} onError={() => setSrc(null)} />
                 </div>
-                <p className="text-center font-bold text-xl">{castMember.name}</p>
-                <p className="text-center text-lg">{castMember.character}</p>
+                <p className="text-center font-bold filter:text-xl text:base">{castMember.name}</p>
+                <p className="text-center filter:text-lg text:base">{castMember.character}</p>
             </Link>
         </li>
     );

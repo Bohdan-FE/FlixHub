@@ -11,7 +11,7 @@ export const PickActorsMovies = ({ movies, tvs, favouriteMovies, favouriteTVs, u
 
     return (
         <div>
-            <div className="mx-auto w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
+            <div className="mx-auto filter:w-96 w-80 mb-5 rounded-2xl transition-all bg-neutral-800">
                 <button className={clsx("w-1/2 p-3 text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all", {
                     'shadow-sliderBtm bg-neutral-600': isMovies
                 })} onClick={() => setIsMovies(true)}>Movies</button>

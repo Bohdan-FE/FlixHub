@@ -28,12 +28,12 @@ function SliderPart({ id, type }: { id: string, type: 'movie' | 'tv' }) {
     if (recomandationData?.results.length === 0 && similarData?.results.length === 0) return
 
     return (
-        <div>
-            <div className="mx-auto w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
-                <button className={clsx("w-1/2 p-3 text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all", {
+        <div className="mb-5">
+            <div className="mx-auto header:w-96 w-80 header:mb-10 mb-5 rounded-2xl transition-all bg-neutral-800">
+                <button className={clsx("w-1/2 p-3 header:text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all text-base", {
                     'shadow-sliderBtm bg-neutral-600': isRecomendation
                 })} onClick={() => setisRecomendation(true)}>Recommendation</button>
-                <button className={clsx("w-1/2 p-3 text-xl border-l-[1px] border-neutral-700 rounded-r-2xl active:scale-95 transition-all", {
+                <button className={clsx("w-1/2 p-3 header:text-xl border-l-[1px] border-neutral-700 rounded-r-2xl active:scale-95 transition-all text-base", {
                     'shadow-sliderBtm bg-neutral-600': !isRecomendation
                 })} onClick={() => setisRecomendation(false)}>Similar</button>
             </div>

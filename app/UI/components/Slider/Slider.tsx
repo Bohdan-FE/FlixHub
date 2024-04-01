@@ -17,13 +17,13 @@ function Slider({ data, type }: { data: Movie[] | TVShow[], type: 'movie' | 'tv'
     if (data.length < 1) return
 
     return (
-        <div className="max-w-7xl mx-auto overflow-hidden relative flex mb-10">
+        <div className="max-w-7xl mx-auto overflow-hidden relative flex">
             <Swiper
                 style={{ paddingBottom: '50px', paddingInline: '50px' }}
                 modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
                 mousewheel={true}
                 spaceBetween={20}
-                slidesPerView={1}
+                slidesPerView={2}
                 breakpoints={{
                     640: {
                         slidesPerView: 4,

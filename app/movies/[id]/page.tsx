@@ -55,7 +55,7 @@ async function Page({ params }: { params: { id: string } }) {
                                 <p className="text-justify text-neutral-300 ">{movie.overview}</p>
                             </div>
                         </div>
-                        <div className="flex justify-end">
+                        <div className="flex justify-end gap-3">
                             <OpenTrailer videos={videos.results} />
                             {session && !isFavouriteMovie && <AddToFavoriteMovie movie={movie} userId={Number(session?.user.id)} type="btn" />}
                             {session && isFavouriteMovie && <RemoveFromFavoriteMovie movie={movie} userId={Number(session.user.id)} type="btn" />}
