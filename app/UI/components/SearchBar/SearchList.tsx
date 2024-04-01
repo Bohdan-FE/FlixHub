@@ -8,7 +8,7 @@ export default memo(function SearchList({ movies, closeSearch, isMovieChecked, h
         <ul className="absolute left-0 top-[100%] w-[100vw] bg-neutral-800 z-[99] rounded-md p-2 cardlisttab:top-[120%] cardlisttab:w-full" onMouseLeave={() => handleMouseToggle(false)} onMouseEnter={() => handleMouseToggle(true)}>
             {isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchMovieCard key={movie.id} movie={movie} handlerOnClick={handlerOnClick} />)}
             {!isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchTVCard key={movie.id} tv={movie} handlerOnClick={handlerOnClick} />)}
-            <button className="cardlisttab:hidden absolute top-3 right-4 w-4 h-4" onClick={closeSearch}><ImCross /></button>
+            <button className="rounded-full bg-[rgba(46,45,45,0.7)] p-2 cardlisttab:hidden absolute top-3 right-4 w-8 h-8 flex items-center justify-center" onClick={closeSearch}><ImCross className="text-neutral-400" /></button>
         </ul>
     )
 })
