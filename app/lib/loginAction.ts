@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { signIn } from 'next-auth/react';
-
+import { redirect } from 'next/dist/server/api-utils';
 
 const FormSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -37,8 +37,9 @@ export async function login(prevState: State, formData: FormData): Promise<State
     }
 
     const { email, password } = validatedFields.data
+
     try {
-        const signInData = await signIn('credentials', { email, password, redirect: false })
+        const signInData = await signIn('credentials', { email, password, redirect: true })
         if (signInData?.error) {
             return {message: 'Password or email incorect'}
         }

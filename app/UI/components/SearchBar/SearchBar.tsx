@@ -42,7 +42,7 @@ export default function SearchBar() {
             }
         }
         getMovies(query)
-    }, [query, isMovieChecked])
+    }, [query])
 
     const handleMouseToggle = useCallback((isMouseOver: boolean) => {
         setMouse(isMouseOver);
