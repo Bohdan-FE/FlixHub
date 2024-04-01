@@ -35,7 +35,7 @@ async function Page({ params }: { params: { id: string } }) {
 
     return (<>
         <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
-            <div className="max-w-7xl py-12 px-3 mx-auto bg-[rgba(46,45,45,0.3)] header:bg-transparent">
+            <div className="max-w-7xl pt-12 pb-4 px-3 mx-auto bg-[rgba(46,45,45,0.3)] header:bg-transparent cardlistmob:py-12">
                 <div className="flex header:justify-between gap-12 justify-center ">
                     <Poster image={movie.poster_path} title={movie.title} videos={videos.results} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
@@ -55,7 +55,7 @@ async function Page({ params }: { params: { id: string } }) {
                                 <p className="text-justify text-neutral-300 ">{movie.overview}</p>
                             </div>
                         </div>
-                        <div className="flex justify-end gap-3">
+                        <div className="flex header:justify-end gap-3 justify-evenly">
                             <OpenTrailer videos={videos.results} />
                             {session && !isFavouriteMovie && <AddToFavoriteMovie movie={movie} userId={Number(session?.user.id)} type="btn" />}
                             {session && isFavouriteMovie && <RemoveFromFavoriteMovie movie={movie} userId={Number(session.user.id)} type="btn" />}

@@ -5,10 +5,9 @@ import { useCallback, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
 import { MdRadioButtonUnchecked } from "react-icons/md";
-import SearchMovieCard from "../SearchMovieCard/SearchMovieCard";
-import SearchTVCard from "../SearchTVCard/SearchTVCard";
+import SearchList from "./SearchList";
 
-export default function SearchBar() {
+export function SearchBar() {
     const pathname = usePathname()
     const [query, setQuery] = useState('')
     const [isMovieChecked, setIsMovieChecked] = useState(true)
@@ -66,7 +65,10 @@ export default function SearchBar() {
         if (isMovieChecked) router.push(`/movies/${id}`)
         if (!isMovieChecked) router.push(`/tv/${id}`)
     }
-
+    const closeSearch = () => {
+        setMovies(null)
+        setQuery('')
+    }
     return (
         <div className="max-w-[450px] w-full min-w-[180px] header:mx-auto cardlisttab:relative">
             <form className="flex gap-2 items-center" onSubmit={handlerSubmit}>
@@ -87,11 +89,10 @@ export default function SearchBar() {
                     </div>
                 </div>
             </form>
-            {movies && movies?.results.length !== 0 && <ul className="absolute left-0 top-[100%] w-[100vw] bg-neutral-800 z-[99] rounded-md p-2 cardlisttab:top-[120%] cardlisttab:w-full" onMouseLeave={() => handleMouseToggle(false)} onMouseEnter={() => handleMouseToggle(true)}>
-                {isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchMovieCard key={movie.id} movie={movie} handlerOnClick={handlerOnClick} />)}
-                {!isMovieChecked && movies.results.slice(0, 5).map(movie => <SearchTVCard key={movie.id} tv={movie} handlerOnClick={handlerOnClick} />)}
-            </ul>}
+            {movies && movies?.results.length !== 0 && <SearchList movies={movies} handleMouseToggle={handleMouseToggle} handlerOnClick={handlerOnClick} closeSearch={closeSearch} isMovieChecked={isMovieChecked} />}
         </div>
     )
 }
+
+
 

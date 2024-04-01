@@ -29,7 +29,7 @@ export default function Poster({ image, title, videos }: { image: string | null,
 
     useLayoutEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 1024) setIsActive(false);
+            if (window.innerWidth < 1024) onClickIcon()
         };
 
         window.addEventListener('resize', handleResize);

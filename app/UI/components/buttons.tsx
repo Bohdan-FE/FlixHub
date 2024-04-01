@@ -38,7 +38,7 @@ export function AddToFavoriteMovie({ movie, userId, type }: { movie: MovieDetail
             <input type="hidden" name="release_date" value={release_date} />
             <input type="hidden" name="vote_average" value={vote_average} />
             <input type="hidden" name="userId" value={userId} />
-            {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all cardlistmob:text-base text-sm" />}
             {type === 'icon' && <SubmitIconAdd />}
         </form>
     )
@@ -56,7 +56,7 @@ export function AddToFavoriteTV({ tv, userId, type }: { tv: TVShowDetails | TVSh
             <input type="hidden" name="first_air_date" value={first_air_date} />
             <input type="hidden" name="vote_average" value={vote_average} />
             <input type="hidden" name="userId" value={userId} />
-            {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'btn' && <SubmitButton title='Add to favorite' className="cursor-pointer p-4 bg-rose-400 hover:bg-rose-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all cardlistmob:text-base text-sm" />}
             {type === 'icon' && <SubmitIconAdd />}
         </form>
     )
@@ -71,7 +71,7 @@ export function RemoveFromFavoriteMovie({ movie, userId, type }: { movie: MovieD
         <form className={clsx({ 'basis-[calc((100%-12px)/2)]  max-w-[280px] w-full': type === 'btn' })} action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="movieId" value={movieId} />
-            {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all cardlistmob:text-base text-sm" />}
             {type === 'icon' && <SubmitIconRemove />}
         </form>
     )
@@ -85,7 +85,7 @@ export function RemoveFromFavoriteTV({ tv, userId, type }: { tv: TVShowDetails |
         <form className=" basis-[calc((100%-12px)/2)] max-w-[280px] w-full" action={formAction} onClick={e => e.stopPropagation()}>
             <input type="hidden" name="userId" value={userId} />
             <input type="hidden" name="tvId" value={tvId} />
-            {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" />}
+            {type === 'btn' && <SubmitButton title="Remove from favorite" className="cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all cardlistmob:text-base text-sm" />}
             {type === 'icon' && <SubmitIconRemove />}
         </form>
     )
@@ -115,7 +115,7 @@ export function OpenTrailer({ videos }: { videos: Video[] }) {
     if (!youtubeKey) return
     return (
         <>
-            <button className=" basis-[calc((100%-12px)/2)] header:hidden max-w-[280px] cursor-pointer items-center justify-center p-4 bg-indigo-400 hover:bg-indigo-500 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all" onClick={() => setIsActive(!isActive)}>Watch trailer</button>
+            <button className=" basis-[calc((100%-12px)/2)] header:hidden max-w-[280px] cursor-pointer items-center justify-center p-4 bg-lime-600 hover:bg-lime-700 text-neutral-800 font-bold w-full rounded-xl active:scale-95 transition-all cardlistmob:text-base text-sm" onClick={() => setIsActive(!isActive)}>Watch trailer</button>
             {isActive && createPortal(
                 <VideoPortal setIsActive={setIsActive} youtubeKey={youtubeKey} />,
                 document.body

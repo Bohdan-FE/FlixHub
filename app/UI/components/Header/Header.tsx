@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.scss'
 import { signOut, useSession } from "next-auth/react";
-import SearchBar from "../SearchBar/SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useLayoutEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
@@ -41,7 +41,7 @@ function Header() {
                     <SearchBar />
                     <button className="shrink-0 w-10 h-10 flex items-center justify-center header:hidden" onClick={() => setIsActive(!isActive)}>{!isActive ? <RxHamburgerMenu className=" w-full h-full" /> : <RxCross2 className=" w-full h-full" />}</button>
                 </div>
-                {isActive && <nav className='w-[100vw] bg-neutral-900 absolute top-full left-0 z-[100] h-[100vh] header:static header:w-auto header:h-full shrink-0'>
+                {isActive && <nav className='w-[100vw] bg-neutral-900 absolute top-full left-0 z-[100] h-[calc(100vh-88px)] header:static header:w-auto header:h-full shrink-0'>
                     <ul className={`flex gap-8 flex-col p-8 items-center text-3xl header:text-xl header:flex-row header:p-0`}>
                         <li className="relative"><Link className={pathname === '/' || pathname.includes('/movies') ? styles.activeLink : styles.link} href={'/'} onClick={closeNavhandler}>Movies</Link></li>
                         <li className="relative"><Link className={pathname.includes('/tv') ? styles.activeLink : styles.link} href={'/tv'} onClick={closeNavhandler}>TV shows</Link></li>
