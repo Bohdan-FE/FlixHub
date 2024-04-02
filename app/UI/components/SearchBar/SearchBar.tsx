@@ -17,9 +17,7 @@ export function SearchBar() {
     const router = useRouter()
 
 
-    useEffect(() => {
-        setIsMovieChecked(!pathname.includes('/tv'))
-    }, [pathname])
+
 
     useEffect(() => {
         if (!mouse && !focus) setMovies(null)
@@ -41,7 +39,7 @@ export function SearchBar() {
             }
         }
         getMovies(query)
-    }, [query])
+    }, [query, isMovieChecked])
 
     const handleMouseToggle = useCallback((isMouseOver: boolean) => {
         setMouse(isMouseOver);
