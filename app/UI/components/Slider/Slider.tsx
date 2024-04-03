@@ -20,8 +20,8 @@ function Slider({ data, type }: { data: Movie[] | TVShow[], type: 'movie' | 'tv'
         <div className="max-w-7xl mx-auto overflow-hidden relative flex">
             <Swiper
                 style={{ paddingBottom: '50px', paddingInline: '50px' }}
-                modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
-                mousewheel={true}
+                modules={[Navigation, Pagination, Scrollbar, A11y]}
+
                 spaceBetween={20}
                 slidesPerView={2}
                 breakpoints={{

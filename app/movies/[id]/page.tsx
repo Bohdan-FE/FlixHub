@@ -13,11 +13,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getFavouriteMovieById } from "@/app/lib/getFavoriteMovieById";
 import Link from "next/link";
+import { getMovieProvider } from "@/app/lib/getMovieProvider";
+import StreamingList from "@/app/UI/components/StreamingList/StreamingList";
 
 
 
 async function Page({ params }: { params: { id: string } }) {
-    const [movie, videos, session] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id), getServerSession(authOptions)])
+    const [movie, videos, session, providers] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id), getServerSession(authOptions), getMovieProvider(params.id)])
     let isFavouriteMovie = false
     if (session) {
         const favouriteMovie = await getFavouriteMovieById(Number(session.user.id), Number(params.id))
@@ -51,6 +53,7 @@ async function Page({ params }: { params: { id: string } }) {
                                 <LuCalendarCheck2 className="w-8 h-8" />
                                 <p className="text-end text-xl text-neutral-300"><span className="font-semibold">{movie.release_date}</span></p>
                             </div>
+                            <StreamingList providers={providers} />
                             <div data-te-perfect-scrollbar-init className="flex justify-end py-2 bg-[rgba(46,45,45,0.7)] rounded-lg px-4">
                                 <p className="text-justify text-neutral-300 ">{movie.overview}</p>
                             </div>

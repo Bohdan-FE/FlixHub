@@ -1,17 +1,19 @@
 import Poster from "@/app/UI/components/Poster/Poster";
 import SliderPart from "@/app/UI/components/SliderPart/SliderPart";
 import StarRating from "@/app/UI/components/StarRating/StarRating";
+import StreamingList from "@/app/UI/components/StreamingList/StreamingList";
 import TVReviews from "@/app/UI/components/TVReviews/TVReviews";
 import { AddToFavoriteTV, OpenTrailer, RemoveFromFavoriteTV } from "@/app/UI/components/buttons";
 import { authOptions } from "@/app/lib/auth";
 import { getFavouriteTVById } from "@/app/lib/getFavouriteTVById";
 import { getTVById } from "@/app/lib/getTVById";
+import { getTVProvider } from "@/app/lib/getTVProvider";
 import { getTVVideos } from "@/app/lib/getTVVideos";
 import { getServerSession } from "next-auth";
 import { LuCalendarCheck2 } from "react-icons/lu";
 
 async function Page({ params }: { params: { id: string } }) {
-    const [tv, videos, session] = await Promise.all([getTVById(params.id), getTVVideos(params.id), getServerSession(authOptions)])
+    const [tv, videos, session, providers] = await Promise.all([getTVById(params.id), getTVVideos(params.id), getServerSession(authOptions), getTVProvider(params.id)])
     let isFavouriteTV
     if (session) {
         const favouriteTV = await getFavouriteTVById(Number(session.user.id), Number(params.id))
@@ -41,6 +43,7 @@ async function Page({ params }: { params: { id: string } }) {
                                 <LuCalendarCheck2 className="w-8 h-8" />
                                 <p className="text-end text-xl text-neutral-300"><span className="font-semibold">{tv.first_air_date}</span></p>
                             </div>
+                            <StreamingList providers={providers} />
                             <div data-te-perfect-scrollbar-init className="flex justify-end py-2 bg-[rgba(46,45,45,0.7)] rounded-lg px-4">
                                 <p className="text-justify text-neutral-300">{tv.overview}</p>
                             </div>
