@@ -32,7 +32,7 @@ async function Page({ params }: { params: { id: string } }) {
     return (<>
         <div className='w-full mx-auto mb-5 relative' style={backgroundImageStyle}>
             <div className="max-w-7xl py-12 px-3 mx-auto bg-[rgba(46,45,45,0.3)] header:bg-transparent">
-                <div className="flex header:justify-between gap-12 justify-center ">
+                <div className="flex header:justify-between gap-12 justify-center items-start">
                     <Poster image={tv.poster_path} title={tv.name} videos={videos.results} />
                     <div className="max-w-2xl flex flex-col justify-evenly gap-4" >
                         <div>
