@@ -10,7 +10,7 @@ export default function PickFavourite({ favouriteMovies, favouriteTVs, userId }:
     const [isMovies, setIsMovies] = useState<Boolean>(true)
     return (
         <div>
-            <div className="mx-auto w-72 cardlistmob:w-96 mb-10 rounded-2xl transition-all bg-neutral-800">
+            <div className="mx-auto w-72 cardlistmob:w-96 mb-6 rounded-2xl transition-all bg-neutral-800">
                 <button className={clsx("w-1/2 p-3 text-xl border-r-[1px] border-neutral-700 rounded-l-2xl active:scale-95 transition-all", {
                     'shadow-sliderBtm bg-neutral-600': isMovies
                 })} onClick={() => setIsMovies(true)}>Movies</button>

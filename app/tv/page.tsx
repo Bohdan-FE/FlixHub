@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: { searchParams: { page: str
     return (
 
         <div className="max-w-7xl mx-auto p-4">
-            <h2 className="text-4xl mb-5 text-center">Trending TV Shows</h2>
+            <h2 className="text-4xl mb-4 text-center">Trending TV Shows</h2>
             <FilterTV />
             <ul className="grid grid-cols-2 gap-x-4 gap-y-5 cardlistmob:grid-cols-3 cardlistmob:gap-5 cardlisttab:grid-cols-4 cardlisttab:gap-x-7 cardlisttab:gap-y-8 header:grid-cols-5">{tv.results.map(tv => <TVCard favouriteTVs={favouriteTVs} key={tv.id} tv={tv} userId={session?.user.id} />)}</ul>
             <Pagination totalPages={Number(tv.total_pages)} />

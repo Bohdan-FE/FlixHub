@@ -13,7 +13,12 @@ import { createPortal } from 'react-dom';
 
 export function SubmitButton({ title, className }: { title: string, className: string }) {
     const { pending } = useFormStatus()
-    return (<button className={className} aria-disabled={pending}>{pending ? 'pending' : title}</button>);
+    const Pending = () => {
+        return (
+            <div className="flex gap-2 items-center justify-center"><AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" /><p>pending</p></div>
+        )
+    }
+    return (<button className={className} aria-disabled={pending}>{pending ? <Pending /> : title}</button>);
 }
 
 export function SubmitIconAdd() {
