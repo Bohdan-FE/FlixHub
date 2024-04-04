@@ -1,3 +1,11 @@
+The goal of the project is to create a website where users can find movies, TV shows, or TV series, explore detailed information about them, watch trailers, view the list of actors, discover on which platforms they can watch the content, read reviews, learn more about different actors, and add movies or TV series to their favorites. I developed this site to enhance my skills in React and Next.js.
+
+This project stands out because it is extensive, being a full-stack project with over 10 pages. It includes user authentication and a database where information about registered users and their favorite movies or TV series is stored.
+
+The technology stack used for this project includes TypeScript, React, Next.js, NextAuth, Prisma, PostgreSQL, Tailwind CSS, and Framer Motion.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
