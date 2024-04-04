@@ -34,7 +34,8 @@ function GenresInput({ setSelectedGenres, selectedGenres, isActive, setIsActive,
 
     return (
         <div className="filter:w-[224px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-800 rounded-2xl w-full">
-            <div className="px-[18px] py-[14px] rounded-[14px] bg-selectBg flex items-center justify-between cursor-pointer overflow-hidden h-full" onClick={() => setIsActive(prev => ({ ...prev, genres: !prev.genres }))}>
+            <div className="relative px-[18px] py-[14px] rounded-[14px] bg-selectBg flex items-center justify-between overflow-hidden h-full">
+                <div className="absolute w-full h-full top-0 left-0 cursor-pointer z-10" onClick={() => setIsActive(prev => ({ ...prev, genres: !prev.genres }))}></div>
                 <p className="truncate">{selectedGenres.length !== 0 ? selectedName() : 'All genres'}</p>
                 <IoIosArrowDown className={'shrink-0' + ' ' + `${isActive.genres && 'rotate-180'}`} />
             </div>

@@ -7,6 +7,7 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useLayoutEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import Logo from "./Logo";
 
 
 
@@ -37,7 +38,7 @@ function Header() {
         <header className="text-neutral-400 text-xl relative">
             <div className="flex flex-col max-w-7xl mx-auto justify-between px-4 py-6 header:flex-row items-center gap-8">
                 <div className="flex items-center justify-between w-full gap-4">
-                    <p>LOGO</p>
+                    <Logo />
                     <SearchBar />
                     <button className="shrink-0 w-10 h-10 flex items-center justify-center header:hidden" onClick={() => setIsActive(!isActive)}>{!isActive ? <RxHamburgerMenu className=" w-full h-full" /> : <RxCross2 className=" w-full h-full" />}</button>
                 </div>

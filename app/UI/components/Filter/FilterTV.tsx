@@ -75,6 +75,8 @@ export default function FilterTV() {
                     <button className="filter:w-[148px] h-[48px] relative text-[18px] leading-5 font-medium bg-neutral-700 rounded-2xl hover:bg-neutral-600 transition-colors w-full" onClick={handlerReset}>Reset</button>
                 </div>
             </form>}
+            {(isActive.sort || isActive.genres || isActive.year) && <div className="fixed h-screen w-screen top-0 left-0 z-0" onClick={() => setIsActive({ sort: false, genres: false, year: false })}></div>}
+
         </div>
     )
 }

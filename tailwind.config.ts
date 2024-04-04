@@ -23,11 +23,13 @@ const config: Config = {
         watch: {
           '0%, 100%': { transform: 'translateX(30px)' },
           '50%': { transform: 'translateX(20px)' },
-        }
+        },
       },
       animation: {
         watch: 'watch 1s ease-in-out infinite',
-      }
+        spinSlow: 'spin 6s linear infinite',
+      },
+      
     },
      screens: {
        'header': '1024px',

@@ -1,7 +1,7 @@
 'use client'
 import netflixIcon from '../../../../public/netflix.png'
 import HBOIcon from '../../../../public/HBO.png'
-import skyShowtimeIcon from '../../../../public/sky-snowtime.svg'
+import skyShowtimeIcon from '../../../../public/skysnowtime.png'
 import disneyIcon from '../../../../public/disny.png'
 import amazonIcon from '../../../../public/Prime-Video-Logo-PNG-Pic.png'
 import Image, { StaticImageData } from 'next/image'
