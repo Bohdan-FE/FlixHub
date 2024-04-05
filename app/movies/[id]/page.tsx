@@ -1,30 +1,31 @@
 
 import StarRating from "../../UI/components/StarRating/StarRating";
-import { convertToHoursAndMinutes } from "../../lib/convertToHoursAndMinutes";
+import Link from "next/link";
+import Poster from "../../UI/components/Poster/Poster";
+import SliderPart from "../../UI/components/SliderPart/SliderPart";
+import StreamingList from "@/app/UI/components/StreamingList/StreamingList";
 import { IoMdTime } from "react-icons/io";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { AddToFavoriteMovie, OpenTrailer, RemoveFromFavoriteMovie } from "../../UI/components/buttons";
-import Poster from "../../UI/components/Poster/Poster";
-import SliderPart from "../../UI/components/SliderPart/SliderPart";
+import { convertToHoursAndMinutes } from "../../lib/convertToHoursAndMinutes";
 import { getMovieVideos } from "../../lib/getMovieVideos";
 import { getMovieById } from "../../lib/getMovieById";
-import Reviews from "../../UI/components/Reviews/Reviews";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/lib/auth";
 import { getFavouriteMovieById } from "@/app/lib/getFavoriteMovieById";
-import Link from "next/link";
 import { getMovieProvider } from "@/app/lib/getMovieProvider";
-import StreamingList from "@/app/UI/components/StreamingList/StreamingList";
+import MovieReviews from "../../UI/components/Reviews/Reviews";
 
 
 
 async function Page({ params }: { params: { id: string } }) {
     const [movie, videos, session, providers] = await Promise.all([getMovieById(params.id), getMovieVideos(params.id), getServerSession(authOptions), getMovieProvider(params.id)])
-    let isFavouriteMovie = false
+    let isFavouriteMovie
     if (session) {
         const favouriteMovie = await getFavouriteMovieById(Number(session.user.id), Number(params.id))
         if (favouriteMovie.length > 0) isFavouriteMovie = true
     }
+
     const backgroundImageStyle = {
         backgroundImage: `linear-gradient(0deg, rgba(23,23,23,1) 0%, rgba(0,0,0,0) 50%),
                         linear-gradient(90deg, rgba(0,0,0,0.8744747899159664) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8744747899159664) 100%),
@@ -68,7 +69,7 @@ async function Page({ params }: { params: { id: string } }) {
             </div>
         </div>
         <SliderPart id={params.id} type="movie" />
-        <Reviews id={params.id} />
+        <MovieReviews id={params.id} />
     </>
     );
 }

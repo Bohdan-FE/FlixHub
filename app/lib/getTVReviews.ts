@@ -1,4 +1,4 @@
-'use server'
+
 
 const { API_KEY } = process.env
 

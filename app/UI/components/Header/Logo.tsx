@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 import LogoIcon from '../../../../public/ui-movie.svg'
 

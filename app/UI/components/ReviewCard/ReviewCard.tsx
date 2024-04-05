@@ -1,13 +1,14 @@
 'use client'
 
-import Image from 'next/image';
-import defaultAvatar from '../../../../public/photo-cover.svg'
+import Image, { StaticImageData } from 'next/image';
+import defaultAvatar from '../../../../public/default_poster.jpg'
 import { useState } from 'react';
 
 import StarRatingMini from '../StarRatingMini/StarRatingMini';
 
 function ReviewCard({ review }: { review: ReviewItem }) {
-    const [src, setSrc] = useState(`https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`)
+    const [src, setSrc] = useState<StaticImageData | string>(`https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`)
+    console.log(review)
 
     return (
         <li className='mb-5 odd:bg-neutral-800 p-3 rounded-lg even:bg-neutral-700'>
@@ -23,8 +24,6 @@ function ReviewCard({ review }: { review: ReviewItem }) {
                 </div>
             </div>
             <p className='p-2 text-justify transition-all overflow-hidden max-h-[25%] hover:max-h-[]'>{review.content}</p>
-
-
         </li>
     );
 }
