@@ -21,9 +21,10 @@ Backend Development:
 - Authentication: NextAuth
 - Deployment & Version Control: GitHub, Vercel
 
-Frontend: TypeScript, React, Next.js, Tailwind CSS, Framer Motion, Swiper.js
-Backend: PostgreSQL, Prisma ORM
-Authentication: NextAuth
-Deployment & Version Control: GitHub, Vercel
-Project Overview:
+Technologies Used:
+
+- Frontend: TypeScript, React, Next.js, Tailwind CSS, Framer Motion, Swiper.js
+- Backend: PostgreSQL, Prisma ORM
+- Authentication: NextAuth
+- Deployment & Version Control: GitHub, Vercel
 
