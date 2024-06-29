@@ -10,7 +10,7 @@ Frontend Development:
 - Employed Framer Motion for animated elements to enrich user interactions.
 - Developed authentication and registration forms with TypeScript and NextAuth for secure user access.
 - Implemented search fields and advanced filters for efficient content discovery.
-- 
+  
 Backend Development:
 
 - Created a PostgreSQL database using Prisma ORM for robust data management.
